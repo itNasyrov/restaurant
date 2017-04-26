@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.khasang.restaurant.controller", "io.khasang.restaurant.config", "io.khasang.restaurant.model"})
+@ComponentScan({"io.khasang.restaurant.controller", "io.khasang.restaurant.model","io.khasang.restaurant.config"})
 public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
     public InternalResourceViewResolver viewResolver() {

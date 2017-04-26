@@ -13,8 +13,8 @@ public class AppController {
 
     @RequestMapping("/")
     public String hello(Model model) {
-        model.addAttribute("mytext1","Мой первый текст без bean");
-        model.addAttribute("mytext2",message.getName());
+        model.addAttribute("text1","Мой первый текст без bean");
+        model.addAttribute("text2",message.getName());
         model.addAttribute("numChar",message.getVal());
         return "index";
     }

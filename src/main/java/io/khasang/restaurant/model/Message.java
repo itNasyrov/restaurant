@@ -2,7 +2,7 @@ package io.khasang.restaurant.model;
 
 public class Message {
     private String name;
-    int val;
+    int value;
 
     public Message() {
     }

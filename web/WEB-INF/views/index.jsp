@@ -4,9 +4,9 @@
     <title>Title</title>
 </head>
 <body>
-${mytext1}
+${text1}
 <br/>
-Исходный текст:${mytext2}
+Исходный текст:${text2}
 <br/>
 Число знаков текст:${numChar}
 </body>
