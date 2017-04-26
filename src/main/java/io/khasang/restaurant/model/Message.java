@@ -2,6 +2,7 @@ package io.khasang.restaurant.model;
 
 public class Message {
     private String name;
+    int val;
 
     public Message() {
     }
@@ -18,5 +19,9 @@ public class Message {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getVal() {
+        return name.length();
     }
 }

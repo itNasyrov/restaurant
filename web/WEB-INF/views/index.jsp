@@ -4,6 +4,10 @@
     <title>Title</title>
 </head>
 <body>
-${hello}
+${mytext1}
+<br/>
+Исходный текст:${mytext2}
+<br/>
+Число знаков текст:${numChar}
 </body>
 </html>
