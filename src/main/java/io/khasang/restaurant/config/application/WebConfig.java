@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan({"io.khasang.restaurant.controller", "io.khasang.restaurant.config", "io.khasang.restaurant.model"})
 public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
+    //@Scope("prototype")
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
