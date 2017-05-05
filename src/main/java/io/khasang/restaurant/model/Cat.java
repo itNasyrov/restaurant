@@ -12,11 +12,14 @@ public class Cat {
     public Cat() {
     }
 
-    public String createCatTable(){
+
+
+    public String createCatTable() {
         jdbcTemplate.execute("DROP TABLE IF EXISTS cats");
         jdbcTemplate.execute("CREATE TABLE cats(\n" +
                 "id INTEGER CONSTRAINT firstkey PRIMARY KEY, \n" +
                 "name VARCHAR (255) NOT NULL);");
         return "first table created";
+
     }
 }
