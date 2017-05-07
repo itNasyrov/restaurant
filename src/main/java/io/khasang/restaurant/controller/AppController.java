@@ -25,4 +25,22 @@ public class AppController {
         model.addAttribute("create", cat.createCatTable());
         return "create";
     }
+
+    @RequestMapping("/add")
+    public String addTable(Model model){
+        model.addAttribute("add", cat.addCatTable());
+        return "add";
+    }
+
+    @RequestMapping("/delete")
+    public String deleteTable(Model model){
+        model.addAttribute("delete", cat.deleteCatTable());
+        return "delete";
+    }
+
+    @RequestMapping("/update")
+    public String updateTable(Model model){
+        model.addAttribute("update", cat.updateCatTable());
+        return "update";
+    }
 }

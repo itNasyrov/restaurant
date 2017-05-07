@@ -20,4 +20,19 @@ public class Cat {
                 "name VARCHAR (255) NOT NULL);");
         return "table created";
     }
+
+    public String addCatTable(){
+        jdbcTemplate.execute("INSERT INTO cats VALUES (1, 'Vaska')");
+        return "add cat";
+    }
+
+    public String deleteCatTable() {
+        jdbcTemplate.execute("DELETE FROM cats");
+        return "table deleted";
+    }
+
+    public String updateCatTable() {
+        jdbcTemplate.execute("UPDATE cats SET name = 'Barsik'");
+        return "table updated";
+    }
 }

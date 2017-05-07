@@ -1,9 +1,10 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Restaurant</title>
+    <title>add Cat</title>
 </head>
 <body>
-${hello}
+${add}
 </body>
 </html>
