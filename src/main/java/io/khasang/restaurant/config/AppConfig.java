@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 public class AppConfig {
     @Bean
-    @Scope(value = "singleton")
+    @Scope("prototype")
     public Message message(){
         return new Message("hello bean!");
     }
