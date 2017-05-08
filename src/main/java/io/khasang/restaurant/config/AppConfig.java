@@ -1,6 +1,7 @@
 package io.khasang.restaurant.config;
 
 import io.khasang.restaurant.model.Cat;
+import io.khasang.restaurant.model.Dog;
 import io.khasang.restaurant.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -38,6 +39,12 @@ public class AppConfig {
     public Cat cat(){
         return new Cat(jdbcTemplate());
     }
+
+    @Bean
+    public Dog dog(){
+        return new Dog(jdbcTemplate());
+    }
+
 
     @Bean
     public Message message() {

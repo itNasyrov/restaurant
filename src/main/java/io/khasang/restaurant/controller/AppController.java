@@ -1,6 +1,7 @@
 package io.khasang.restaurant.controller;
 
 import io.khasang.restaurant.model.Cat;
+import io.khasang.restaurant.model.Dog;
 import io.khasang.restaurant.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ public class AppController {
     private Message message;
     @Autowired
     private Cat cat;
+    @Autowired
+    private Dog dog;
 
     @RequestMapping("/")
     public String hello(Model model) {
@@ -27,5 +30,17 @@ public class AppController {
     public String createTable(Model model) {
         model.addAttribute("create", cat.createCatTable());
         return "create";
+    }
+
+    @RequestMapping("/createdog")
+    public String createDogTable(Model model) {
+        model.addAttribute("create", dog.createDogTable());
+        return "create";
+    }
+
+    @RequestMapping("/insertdog")
+    public String insertDogTable(Model model) {
+        model.addAttribute("insert", dog.insertDogTable("Bobik", "Poodle"));
+        return "insert";
     }
 }
