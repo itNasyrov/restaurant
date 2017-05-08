@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Create</title>
+    <title>Insert</title>
 </head>
 <body>
-    <h2>New table</h2>
-    ${create}
+    <h2>Inserting into cats table</h2>
+    ${insert}
 </body>
 </html>

@@ -40,14 +40,39 @@ public class AppController {
         return "create";
     }
 
+    @RequestMapping(value = "/insert", method = RequestMethod.GET)
+    public String insertToTable(Model model){
+        cat.setId(11);
+        cat.setName("Valmont");
+        model.addAttribute("insert", cat.insertCatToTable(cat));
+        return "insert";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public String updateTable(Model model){
+        model.addAttribute("update", cat.updateCatTable(11));
+        return "update";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteFromTable(Model model){
+        model.addAttribute("delete", cat.deleteFromTable(11));
+        return "delete";
+    }
+
     @RequestMapping("/list")
     public String getList(Model model){
         List<Document> documentList = new ArrayList<>();
         documentList.add(new Document(3, "Cat"));
         documentList.add(new Document(2, "Dog"));
         model.addAttribute("list", documentList);
-
-        model.addAttribute("hello", message.getName());
         return "list";
+    }
+
+    @RequestMapping("/read")
+    public String readFromTable(Model model){
+        List<Cat> cats = cat.findAll();
+        model.addAttribute("read", cats);
+        return "read";
     }
 }
