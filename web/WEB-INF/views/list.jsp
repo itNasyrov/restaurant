@@ -6,6 +6,7 @@
     <title>Title</title>
 </head>
 <body>
+${hello}
 <table>
     <tr>
         <td>ID</td>

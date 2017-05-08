@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import java.util.Random;
 
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
@@ -40,7 +43,9 @@ public class AppConfig {
     }
 
     @Bean
+    @Scope("prototype")
     public Message message() {
-        return new Message("hello bean!");
+        Random rn = new Random();
+        return new Message("hello bean-" + rn.nextInt());
     }
 }
