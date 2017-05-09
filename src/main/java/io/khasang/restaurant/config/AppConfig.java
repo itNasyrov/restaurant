@@ -41,6 +41,6 @@ public class AppConfig {
 
     @Bean
     public Message message() {
-        return new Message("hello bean!");
+        return new Message("hello ----bean!");
     }
 }
