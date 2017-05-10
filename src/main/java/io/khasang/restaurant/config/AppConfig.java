@@ -23,14 +23,14 @@ public class AppConfig {
     @Bean
     public UserDetailsService userDetailsService(){
         JdbcDaoImpl jdbcImpl = new JdbcDaoImpl();
-        jdbcImpl.setDataSource(dataSource());
+        jdbcImpl.setDataSource(jdbcDataSource());
         jdbcImpl.setUsersByUsernameQuery("");
         jdbcImpl.setAuthoritiesByUsernameQuery("");
         return jdbcImpl;
     }
 
     @Bean
-    DriverManagerDataSource dataSource() {
+    DriverManagerDataSource jdbcDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getProperty("jdbc.postgresql.driver"));
         dataSource.setUrl(environment.getProperty("jdbc.postgresql.url"));
@@ -42,7 +42,7 @@ public class AppConfig {
     @Bean
     public JdbcTemplate jdbcTemplate() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
-        jdbcTemplate.setDataSource(dataSource());
+        jdbcTemplate.setDataSource(jdbcDataSource());
         return jdbcTemplate;
     }
 
