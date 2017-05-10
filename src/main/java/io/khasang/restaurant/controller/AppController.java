@@ -8,9 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * Created by Aleksandr on 05.05.2017.
- */
 @Controller
 public class AppController {
     @Autowired
@@ -43,4 +40,15 @@ public class AppController {
         model.addAttribute("insert", dog.insertDogTable("Bobik", "Poodle"));
         return "insert";
     }
+
+    @RequestMapping("/user/page")
+    public String getUser() {
+        return "page";
+    }
+
+    @RequestMapping("/admin/page")
+    public String getAdmin() {
+        return "admin";
+    }
+
 }
