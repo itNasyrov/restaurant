@@ -13,6 +13,7 @@ public class Company {
     @Column(name="company_name")
     private String name;
 
+
     private int count;
 
     public String getName() {
