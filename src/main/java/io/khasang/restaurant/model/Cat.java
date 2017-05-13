@@ -17,7 +17,8 @@ public class Cat {
         jdbcTemplate.execute("DROP TABLE IF EXISTS cats");
         jdbcTemplate.execute("CREATE TABLE cats(\n" +
                 "id INTEGER CONSTRAINT firstkey PRIMARY KEY, \n" +
-                "name VARCHAR (255) NOT NULL);");
+                "name VARCHAR (255) NOT NULL, \n" +
+                "breed VARCHAR (255) NOT NULL);");
         return "table created";
     }
 }
