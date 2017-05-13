@@ -39,4 +39,15 @@ public class AppController {
         model.addAttribute("list", documentList);
         return "list";
     }
+
+    @RequestMapping("/user/page")
+    public String getUser(){
+        return "page";
+    }
+
+    @RequestMapping("/admin/page")
+    public String getAdmin(){
+        return "admin";
+    }
+
 }
