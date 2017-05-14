@@ -1,7 +1,7 @@
 package io.khasang.restaurant.controller;
 
 import io.khasang.restaurant.model.Cat;
-import io.khasang.restaurant.model.Document;
+import io.khasang.restaurant.entity.Document;
 import io.khasang.restaurant.model.Message;
 import io.khasang.restaurant.model.Note;
 import org.springframework.beans.factory.annotation.Autowired;

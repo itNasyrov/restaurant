@@ -1,4 +1,4 @@
-package io.khasang.restaurant.model;
+package io.khasang.restaurant.entity;
 
 public class Document {
     private int id;
