@@ -4,7 +4,7 @@
     <title>Title</title>
 </head>
 <body>
-<p>This is user page</p>
-<p>Hello from user page!</p>
+    <p>Your password is: </p>
+    <p>${crypt}</p>
 </body>
 </html>
