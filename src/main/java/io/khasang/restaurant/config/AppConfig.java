@@ -1,5 +1,8 @@
 package io.khasang.restaurant.config;
 
+import io.khasang.restaurant.dao.FirmDao;
+import io.khasang.restaurant.dao.impl.FirmDaoImpl;
+import io.khasang.restaurant.entity.Firm;
 import io.khasang.restaurant.model.Cat;
 import io.khasang.restaurant.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,11 @@ public class AppConfig {
         dataSource.setUsername(environment.getProperty("jdbc.postgresql.username"));
         dataSource.setPassword(environment.getProperty("jdbc.postgresql.password"));
         return dataSource;
+    }
+
+    @Bean
+    public FirmDao firmDao(){
+        return new FirmDaoImpl(Firm.class);
     }
 
     @Bean
