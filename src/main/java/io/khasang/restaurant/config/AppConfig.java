@@ -1,6 +1,9 @@
 package io.khasang.restaurant.config;
 
+import io.khasang.restaurant.dao.DocumentDao;
+import io.khasang.restaurant.dao.impl.DocumentDaoImpl;
 import io.khasang.restaurant.model.Cat;
+import io.khasang.restaurant.entity.Document;
 import io.khasang.restaurant.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -36,6 +39,11 @@ public class AppConfig {
         dataSource.setUsername(environment.getProperty("jdbc.postgresql.username"));
         dataSource.setPassword(environment.getProperty("jdbc.postgresql.password"));
         return dataSource;
+    }
+
+    @Bean
+    public DocumentDao documentDao() {
+        return new DocumentDaoImpl(Document.class);
     }
 
     @Bean

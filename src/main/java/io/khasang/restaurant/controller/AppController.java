@@ -1,7 +1,7 @@
 package io.khasang.restaurant.controller;
 
 import io.khasang.restaurant.model.Cat;
-import io.khasang.restaurant.model.Document;
+import io.khasang.restaurant.entity.Document;
 import io.khasang.restaurant.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +36,13 @@ public class AppController {
 
     @RequestMapping("/list")
     public String getList(Model model){
-        List<Document> documentList = new ArrayList<>();
-        documentList.add(new Document(3, "Cat"));
-        documentList.add(new Document(2, "Dog"));
-        model.addAttribute("list", documentList);
+        List<Message> messagesList = new ArrayList<>();
+        messagesList.add(new Message(3, "Cat"));
+        messagesList.add(new Message(2, "Dog"));
+        model.addAttribute("list", messagesList);
+       // documentList.add(new Document(3, "Cat"));
+       // documentList.add(new Document(2, "Dog"));
+       // model.addAttribute("list", documentList);
         return "list";
     }
 
