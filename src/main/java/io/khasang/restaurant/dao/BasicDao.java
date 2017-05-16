@@ -1,5 +1,6 @@
 package io.khasang.restaurant.dao;
 
+import io.khasang.restaurant.entity.Document;
 import org.hibernate.Session;
 
 import java.util.List;
@@ -39,4 +40,13 @@ public interface BasicDao<T> {
      * @return deleted entity
      */
     T delete(T entity);
+
+    /**
+     * Update specify entity at database
+     *
+     * @param entity - entity for update
+     * @return updateded entity
+     */
+    T update(T entity);
+
 }

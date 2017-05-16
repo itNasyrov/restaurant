@@ -52,4 +52,10 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
     public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
+
+    @Override
+    public T update(T entity) {
+        getCurrentSession().update(entity);
+        return entity;
+    }
 }
