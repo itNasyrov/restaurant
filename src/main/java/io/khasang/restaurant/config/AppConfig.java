@@ -1,5 +1,8 @@
 package io.khasang.restaurant.config;
 
+import io.khasang.restaurant.dao.DocumentDao;
+import io.khasang.restaurant.dao.impl.DocumentDaoImpl;
+import io.khasang.restaurant.entity.Document;
 import io.khasang.restaurant.model.Cat;
 import io.khasang.restaurant.model.Dog;
 import io.khasang.restaurant.model.Message;
@@ -12,13 +15,17 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
-
 @Configuration
 @PropertySource(value = {"classpath:util.properties"})
 public class AppConfig {
 
     @Autowired
     private Environment environment;
+
+    @Bean
+    public DocumentDao documentDao() {
+        return new DocumentDaoImpl(Document.class);
+    }
 
     @Bean
     public UserDetailsService userDetailsService(){
