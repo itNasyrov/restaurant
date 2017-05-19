@@ -1,7 +1,7 @@
 package io.khasang.restaurant.controller;
 
+import io.khasang.restaurant.entity.Document;
 import io.khasang.restaurant.model.Cat;
-import io.khasang.restaurant.model.Document;
 import io.khasang.restaurant.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -37,8 +37,8 @@ public class AppController {
     @RequestMapping("/list")
     public String getList(Model model){
         List<Document> documentList = new ArrayList<>();
-        documentList.add(new Document(3, "Cat"));
-        documentList.add(new Document(2, "Dog"));
+        documentList.add(new Document(3L, "Cat"));
+        documentList.add(new Document(2L, "Dog"));
         model.addAttribute("list", documentList);
         return "list";
     }
