@@ -38,4 +38,12 @@ public interface BasicDao<T> {
      * @return entity
      */
     T getById(long id);
+
+    /**
+     * Update entity in the database
+     *
+     * @param entity - entity to be updated
+     * @return updated entity
+     */
+    T update(T entity);
 }
