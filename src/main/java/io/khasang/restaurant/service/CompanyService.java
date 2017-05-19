@@ -36,4 +36,12 @@ public interface CompanyService {
      */
     Company getCompanyById(long id);
 
+    /**
+     * Update company
+     *
+     * @param company - companyto be updated
+     * @return updated company
+     */
+    Company updateCompany(Company company);
+
 }

@@ -33,4 +33,8 @@ public class CompanyServiceImpl implements CompanyService {
         return companyDao.getById(id);
     }
 
+    @Override
+    public Company updateCompany(Company company) {
+        return companyDao.update(company);
+    }
 }

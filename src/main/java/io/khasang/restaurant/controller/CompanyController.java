@@ -32,4 +32,17 @@ public class CompanyController {
         return companyService.deleteCompany(Long.parseLong(id));
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public Company updateCompany(@RequestBody Company company){
+        companyService.updateCompany(company);
+        return company;
+    }
+
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Company getCompanyById(@PathVariable(value = "id") String id){
+        return companyService.getCompanyById(Long.parseLong(id));
+    }
+
 }
