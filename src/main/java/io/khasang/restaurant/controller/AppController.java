@@ -25,7 +25,7 @@ public class AppController {
     @RequestMapping("/")
     public String hello(Model model) {
         model.addAttribute("hello", message.getName());
-        return "index";
+        return "test";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
