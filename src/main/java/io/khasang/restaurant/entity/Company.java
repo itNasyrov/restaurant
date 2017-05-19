@@ -40,4 +40,12 @@ public class Company {
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
