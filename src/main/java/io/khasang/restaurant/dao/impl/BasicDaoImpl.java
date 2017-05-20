@@ -33,6 +33,7 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
         CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
         Root<T> root = criteriaQuery.from(entityClass);
+        criteriaQuery.orderBy(builder.asc(root.get("id")));
         criteriaQuery.select(root);
         return sessionFactory.getCurrentSession().createQuery(criteriaQuery).list();
     }
