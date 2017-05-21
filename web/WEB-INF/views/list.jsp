@@ -3,20 +3,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>List</title>
+    <title>Title</title>
 </head>
 <body>
-    <table>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>NAME</td>
+    </tr>
+    <c:forEach items="${list}" var="message" varStatus="status">
         <tr>
-            <td>ID</td>
-            <td>NAME</td>
+            <td>${message.id}</td>
+            <td>${message.name}</td>
         </tr>
-        <c:forEach items="${list}" var="document" varStatus="status">
-            <tr>
-                <td>${document.id}</td>
-                <td>${document.name}</td>
-            </tr>
-        </c:forEach>
-    </table>
+    </c:forEach>
+</table>
 </body>
 </html>
