@@ -22,11 +22,13 @@ public class AppController {
     private Cat cat;
 
     @RequestMapping("/")
-    public String hello(Model model) {
-        model.addAttribute("text1","Мой первый текст без bean");
-        model.addAttribute("text2",message.getName());
-        model.addAttribute("numChar",message.getVal());
-        return "index";
+    public String hello() {
+//    public String hello(Model model) {
+//        model.addAttribute("text1","Мой первый текст без bean");
+//        model.addAttribute("text2",message.getName());
+//        model.addAttribute("numChar",message.getVal());
+//        return "index";
+        return "document";
     }
 
     @RequestMapping("/create")
