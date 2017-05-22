@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package io.khasang.restaurant.config;
 
 import io.khasang.restaurant.dao.DocumentDao;
@@ -63,3 +64,24 @@ public class AppConfig {
         return new Message("hello bean!");
     }
 }
+
+/**package io.khasang.restaurant.config;
+
+import io.khasang.restaurant.model.Message;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+/**
+ * Created by dinar on 17.05.2017.
+
+@Configuration
+@PropertySource(value = "util.properties")
+public class AppConfig {
+    @Bean
+    public Message message(){
+        return new Message("Hello, Bean!");
+    }
+}
+*/
+
