@@ -23,7 +23,7 @@ public class AppController {
     private Cat cat;
 
     private Note note;
-
+/*
     @RequestMapping("/")
     public String hello(Model model) {
         model.addAttribute("hello", message.getName());
@@ -33,6 +33,11 @@ public class AppController {
         model.addAttribute("note", note.getText());
 
         return "index";
+    }
+*/
+    @RequestMapping("/")
+    public String hello(Model model) {
+        return "document";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
