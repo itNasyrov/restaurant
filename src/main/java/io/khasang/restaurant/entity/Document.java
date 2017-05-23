@@ -8,6 +8,7 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    private String Description;
 
     public long getId() {
         return id;
@@ -23,5 +24,13 @@ public class Document {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
     }
 }
