@@ -14,8 +14,16 @@ public class Company {
     private String name;
 
     private String description;
-
+    private String capital;
     private int statusCode;
+
+    public String getCapital() {
+        return capital;
+    }
+
+    public void setCapital(String capital) {
+        this.capital = capital;
+    }
 
     public String getDescription() {
         return description;
