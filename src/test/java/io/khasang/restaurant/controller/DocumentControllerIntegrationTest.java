@@ -1,7 +1,7 @@
 package io.khasang.restaurant.controller;
 
 import io.khasang.restaurant.entity.Document;
-import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -9,10 +9,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
+import static org.junit.Assert.*;
+@Ignore
 public class DocumentControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/document";
     private final String ADD = "/add";

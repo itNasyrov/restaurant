@@ -16,7 +16,7 @@ public interface DocumentService {
     Document addDocument(Document document);
 
     /**
-     * Receive all documents
+     *Receive all documents
      *
      * @return all documents from database
      */

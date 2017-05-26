@@ -1,7 +1,6 @@
 package io.khasang.restaurant.dao;
 
 import io.khasang.restaurant.entity.Document;
-
 import java.util.List;
 
 public interface DocumentDao extends BasicDao<Document> {

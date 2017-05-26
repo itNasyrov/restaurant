@@ -3,7 +3,6 @@ package io.khasang.restaurant.config.application;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -12,8 +11,9 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"io.khasang.restaurant.controller", "io.khasang.restaurant.config", "io.khasang.restaurant.model",
-        "io.khasang.restaurant.service", "io.khasang.restaurant.dao"})
+
+@ComponentScan("io.khasang.restaurant.*")
+
 public class WebConfig extends WebMvcConfigurerAdapter{
     @Bean
     public InternalResourceViewResolver viewResolver() {
