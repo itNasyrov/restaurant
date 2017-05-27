@@ -1,7 +1,9 @@
 package io.khasang.restaurant.config;
 
 import io.khasang.restaurant.dao.DocumentDao;
+import io.khasang.restaurant.dao.TableBookingDao;
 import io.khasang.restaurant.dao.impl.DocumentDaoImpl;
+import io.khasang.restaurant.dao.impl.TableBookingDaoImpl;
 import io.khasang.restaurant.entity.Document;
 import io.khasang.restaurant.model.Cat;
 import io.khasang.restaurant.model.Message;
@@ -44,6 +46,11 @@ public class AppConfig {
     @Bean
     public DocumentDao documentDao(){
         return new DocumentDaoImpl(Document.class);
+    }
+
+    @Bean
+    public TableBookingDao tableBookingDao() {
+        return new TableBookingDaoImpl();
     }
 
     @Bean
