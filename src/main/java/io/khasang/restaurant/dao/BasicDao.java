@@ -7,44 +7,40 @@ import java.util.List;
 public interface BasicDao<T> {
 
     /**
-     * @return current session for Hibernate
+     * @return Current hibernate session
      */
     Session getCurrentSession();
 
     /**
-     * Create entity at database
-     *
-     * @param entity - current entity
-     * @return entity
+     * Create entity in the database
+     * @param entity - Entity to be created
+     * @return Created entity
      */
     T create(T entity);
 
     /**
-     * @return all entity list
+     * @return List of all entities
      */
     List<T> getList();
 
     /**
-     * Get entity by id
-     *
-     * @param id - specify id
-     * @return entity
+     * Get entity by id from the database
+     * @param id - Id of the entity
+     * @return Entity taken from the database
      */
     T getById(long id);
 
     /**
-     * Delete specify entity from database
-     *
-     * @param entity - entity for delete
-     * @return deleted entity
+     * Delete entity by id from database
+     * @param entity - Entity to be deleted
+     * @return Deleted entity
      */
     T delete(T entity);
 
     /**
-     * Update current entity at database
-     *
-     * @param entity - entity from request
-     * @return updated entity
+     * Update entity in the database
+     * @param entity - Entity to be updated
+     * @return Updated entity
      */
     T update(T entity);
 }

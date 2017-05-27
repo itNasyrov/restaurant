@@ -1,5 +1,7 @@
 package io.khasang.restaurant.entity;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import javax.persistence.*;
 import java.util.Calendar;
 
@@ -36,6 +38,12 @@ public class TableBooking {
      * Status of the booking. Default is TABLE_BOOKED
      */
     private BookingStatus status;
+
+    @Transient
+    private JdbcTemplate jdbcTemplate;
+
+
+    // methods
 
     public long getId() {
         return id;
@@ -75,6 +83,14 @@ public class TableBooking {
 
     public void setStatus(BookingStatus status) {
         this.status = status;
+    }
+
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
+    }
+
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     // todo: implement preorder for registered customers

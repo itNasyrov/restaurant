@@ -1,20 +1,19 @@
 package io.khasang.restaurant.dao.impl;
 
 import io.khasang.restaurant.dao.TableBookingDao;
-import org.hibernate.Session;
+import io.khasang.restaurant.entity.TableBooking;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by firesome on 27.05.2017.
  */
-public class TableBookingDaoImpl implements TableBookingDao {
+public class TableBookingDaoImpl extends BasicDaoImpl<TableBooking> implements TableBookingDao {
+
     @Autowired
-    protected SessionFactory sessionFactory;
+    protected SessionFactory sessionFactory; // todo: check if this is necessary
 
-    @Override
-    public Session getCurrentSession() {
-        return sessionFactory.getCurrentSession();
+    public TableBookingDaoImpl(Class<TableBooking> entityClass) {
+        super(entityClass);
     }
-
 }
