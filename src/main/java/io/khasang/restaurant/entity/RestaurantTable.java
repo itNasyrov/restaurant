@@ -11,6 +11,7 @@ public class RestaurantTable {
     /**
      * Table number
      */
+    // todo: mapping RestaurantTable (one) <-> TableBooking.table (many)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "customers")
 public class Customer {
-    // todo: Customer (one) <-> TableBooking.customer (many)
+    // todo: mapping Customer (one) <-> TableBooking.customer (many)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

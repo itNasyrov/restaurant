@@ -6,6 +6,7 @@ import io.khasang.restaurant.entity.RestaurantTable;
 import io.khasang.restaurant.entity.TableBooking;
 import io.khasang.restaurant.service.TableBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.List;
@@ -40,26 +41,40 @@ public class TableBookingController {
     }
 
     /**
-     * Create table booking for the customer at specified date/time
-     * @param customer - Customer who books the table
-     * @param table - Table to be booked by the customer at the specified date/time
-     * @param bookTime - Date/time at which the table is booked
+     * Create table booking
+     * @param tableBooking - Table booking to be created
+     * @return Table booking created
      */
-    public void bookTable(Customer customer, RestaurantTable table, Calendar bookTime) {
+    @RequestMapping(value = "/bookTable", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public TableBooking bookTable(@RequestBody TableBooking tableBooking) {
         // todo: implement. Test first!
+        return null;
     }
 
     /**
-     *
-     * @param bookingToBeChanged - Table booking to be changed
-     * @param newCustomer -
-     * @param newTable -
-     * @param newBookTime -
-     * @param newStatus -
+     * Update table booking
+     * @param tableBooking - Table to be updated
+     * @return Table booking updated
      */
-    // todo: Probably this method will be fully refactored
-    public void changeBooking(TableBooking bookingToBeChanged, Customer newCustomer, RestaurantTable newTable,
-                              Calendar newBookTime, BookingStatus newStatus) {
+    @RequestMapping(value = "/updateBooking", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public TableBooking updateBooking(@RequestBody TableBooking tableBooking) {
         // todo: implement. Test first!
+        return null;
     }
+
+
+    /**
+     * Delete table booking
+     * @param id - Id of the table booking to be deleted
+     * @return Table booking deleted
+     */
+    @RequestMapping(value = "/deleteBooking/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public TableBooking deleteBooking(@PathVariable(value = "id") String id) {
+        // todo: implement. Test first!
+        return null;
+    }
+
 }
