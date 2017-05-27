@@ -1,16 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Galina
-  Date: 27.05.2017
-  Time: 23:16
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Events</title>
 </head>
 <body>
-$END$
+    <h2>This is Events UI</h2>
 </body>
 </html>
