@@ -1,13 +1,14 @@
 package io.khasang.restaurant.controller;
 
-import io.khasang.restaurant.entity.Document;
 import io.khasang.restaurant.model.Cat;
 import io.khasang.restaurant.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class AppController {
 
     @RequestMapping("/")
     public String hello() {
-        return "document";
+        return "booking";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)

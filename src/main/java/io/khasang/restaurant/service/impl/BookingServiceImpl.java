@@ -3,7 +3,6 @@ package io.khasang.restaurant.service.impl;
 import io.khasang.restaurant.dao.BookingDao;
 import io.khasang.restaurant.entity.Booking;
 import io.khasang.restaurant.service.BookingService;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,32 +21,27 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Session getCurrentSession() {
-        return null;
+    public Booking updateBooking(Booking booking) {
+        return bookingDao.update(booking);
     }
 
     @Override
-    public Booking create(Booking entity) {
-        return null;
+    public List<Booking> getBookingList() {
+        return bookingDao.getList();
     }
 
     @Override
-    public List<Booking> getList() {
-        return null;
+    public Booking deleteBooking(long id) {
+        return bookingDao.delete(getBookingById(id));
     }
 
     @Override
-    public Booking getById(long id) {
-        return null;
+    public Booking getBookingById(long id) {
+        return bookingDao.getById(id);
     }
 
     @Override
-    public Booking delete(Booking entity) {
-        return null;
-    }
-
-    @Override
-    public Booking update(Booking entity) {
-        return null;
+    public List<Booking> getBookingByName(String name) {
+        return bookingDao.getByName(name);
     }
 }

@@ -8,22 +8,22 @@ import java.util.Date;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private Date date;
     private int idIvents;
     private int idMenu;
-    @Column(name = "price")
+    @Column(name = "totalPrice")
     private double priceOfIventAndMenu;
-    private String availible;
+    private String available;
     private String client;
     private String phone;
     private int quantity;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -59,12 +59,12 @@ public class Booking {
         this.priceOfIventAndMenu = priceOfIventAndMenu;
     }
 
-    public String getAvailible() {
-        return availible;
+    public String getAvailable() {
+        return available;
     }
 
-    public void setAvailible(String availible) {
-        this.availible = availible;
+    public void setAvailable(String availible) {
+        this.available = availible;
     }
 
     public String getClient() {
