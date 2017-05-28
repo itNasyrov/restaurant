@@ -10,11 +10,10 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Date date;
-    private int idIvents;
+    private int idEvents;
     private int idMenu;
     @Column(name = "totalPrice")
-    private double priceOfIventAndMenu;
-    private String available;
+    private double priceOfEventAndMenu;
     private String client;
     private String phone;
     private int quantity;
@@ -35,12 +34,12 @@ public class Booking {
         this.date = date;
     }
 
-    public int getIdIvents() {
-        return idIvents;
+    public int getIdEvents() {
+        return idEvents;
     }
 
-    public void setIdIvents(int idIvents) {
-        this.idIvents = idIvents;
+    public void setIdEvents(int idIvents) {
+        this.idEvents = idIvents;
     }
 
     public int getIdMenu() {
@@ -51,20 +50,12 @@ public class Booking {
         this.idMenu = idMenu;
     }
 
-    public double getPriceOfIventAndMenu() {
-        return priceOfIventAndMenu;
+    public double getPriceOfEventAndMenu() {
+        return priceOfEventAndMenu;
     }
 
-    public void setPriceOfIventAndMenu(double priceOfIventAndMenu) {
-        this.priceOfIventAndMenu = priceOfIventAndMenu;
-    }
-
-    public String getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(String availible) {
-        this.available = availible;
+    public void setPriceOfEventAndMenu(double priceOfEventAndMenu) {
+        this.priceOfEventAndMenu = priceOfEventAndMenu;
     }
 
     public String getClient() {

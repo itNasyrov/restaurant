@@ -2,12 +2,13 @@ package io.khasang.restaurant.config;
 
 import io.khasang.restaurant.dao.BookingDao;
 import io.khasang.restaurant.dao.DocumentDao;
+import io.khasang.restaurant.dao.EventDao;
 import io.khasang.restaurant.dao.impl.BookingDaoImpl;
 import io.khasang.restaurant.dao.impl.DocumentDaoImpl;
+import io.khasang.restaurant.dao.impl.EventDaoImpl;
 import io.khasang.restaurant.entity.Booking;
 import io.khasang.restaurant.entity.Document;
-import io.khasang.restaurant.model.Cat;
-import io.khasang.restaurant.model.Message;
+import io.khasang.restaurant.entity.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,6 +51,11 @@ public class AppConfig {
     }
 
     @Bean
+    public EventDao eventDao() {
+        return new EventDaoImpl(Event.class);
+    }
+
+    @Bean
     public BookingDao bookingDao(){
         return new BookingDaoImpl(Booking.class);
     }
@@ -59,15 +65,5 @@ public class AppConfig {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
-    }
-
-    @Bean
-    public Cat cat() {
-        return new Cat(jdbcTemplate());
-    }
-
-    @Bean
-    public Message message() {
-        return new Message("hello bean!");
     }
 }
