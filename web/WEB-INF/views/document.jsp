@@ -19,7 +19,8 @@
                 $('#response').html(JSON.stringify(result));
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $('#response').html(JSON.stringify(jqXHR));
+                //$('#response').html(JSON.stringify(jqXHR));
+                $('#response').html(jqXHR.status + " and " + jqXHR.responseText);
             }
         });
     };
