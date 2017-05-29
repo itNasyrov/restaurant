@@ -1,7 +1,7 @@
 package io.khasang.restaurant.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "booking")
@@ -9,10 +9,17 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Date date;
+    @Column(name = "date_begin")
+//    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp dateBegin;
+    @Column(name = "date_end")
+//    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp dateEnd;
+    @Column(name = "id_event")
     private int idEvents;
+    @Column(name = "id_menu")
     private int idMenu;
-    @Column(name = "totalPrice")
+    @Column(name = "total_price")
     private double priceOfEventAndMenu;
     private String client;
     private String phone;
@@ -26,12 +33,20 @@ public class Booking {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public Timestamp getDateBegin() {
+        return dateBegin;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateBegin(Timestamp dateBegin) {
+        this.dateBegin = dateBegin;
+    }
+
+    public Timestamp getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(Timestamp dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
     public int getIdEvents() {
