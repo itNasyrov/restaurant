@@ -40,8 +40,8 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public List<Recipe> getRecipeListById(String name) {
-        return recipeDao.findByName(name);
+    public List<Recipe> getRecipeListByText(String text) {
+        return recipeDao.findByText(text);
     }
 
 

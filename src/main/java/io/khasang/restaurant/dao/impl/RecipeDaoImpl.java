@@ -22,10 +22,11 @@ public class RecipeDaoImpl extends BasicDaoImpl<Recipe> implements RecipeDao {
     }
 
     @Override
-    public List<Recipe> findByName(String name) {
+    public List<Recipe> findByText(String text) {
+        String pattern = "%?%";
         return (List<Recipe>) sessionFactory.getCurrentSession()
-                .createQuery("from Recipe as r where r.recipeText = ?")
-                .setParameter(0, name)
+                .createQuery("from Recipe as r where r.recipeText like " + pattern)
+                .setParameter(0, text)
                 .list();
     }
 }
