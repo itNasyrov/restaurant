@@ -3,9 +3,11 @@ package io.khasang.restaurant.controller;
 import io.khasang.restaurant.entity.Booking;
 import io.khasang.restaurant.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -50,5 +52,18 @@ public class BookingController {
     @ResponseBody
     public List<Booking> getBookingByName(@PathVariable(value = "name") String name){
         return bookingService.getBookingByName(name);
+    }
+
+    @RequestMapping(value = "/filter", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Booking> getForPeriod(@RequestParam(value="dateBegin", required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date dateBegin,
+                                      @RequestParam(value="dateEnd", required=false) @DateTimeFormat(pattern="yyyy-MM-dd") Date dateEnd) {
+        return bookingService.getForPeriod(dateBegin, dateEnd);
+    }
+
+    @RequestMapping(value = "/check", method = RequestMethod.GET)
+    @ResponseBody
+    public Boolean isBookingAvailable(@RequestParam Date dateBegin, @RequestParam Date dateEnd) {
+        return bookingService.isBookingAvailable(dateBegin, dateEnd);
     }
 }

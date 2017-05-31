@@ -2,6 +2,7 @@ package io.khasang.restaurant.service;
 
 import io.khasang.restaurant.entity.Booking;
 
+import java.util.Date;
 import java.util.List;
 
 public interface BookingService {
@@ -46,4 +47,7 @@ public interface BookingService {
      * @return clients booking list
      */
     List<Booking> getBookingByName(String name);
+
+    List<Booking> getForPeriod(Date dateBegin, Date dateEnd);
+    Boolean isBookingAvailable(Date dateBegin, Date dateEnd);
 }

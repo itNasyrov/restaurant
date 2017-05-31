@@ -14,7 +14,7 @@ public interface EventDao extends BasicDao<Event> {
     Event addEvent(Event event);
 
     /**
-     * Receive event from database by name
+     * Receive events from database by name
      *
      * @param name - event name
      * @return list of events

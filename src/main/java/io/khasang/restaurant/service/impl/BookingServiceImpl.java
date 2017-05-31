@@ -6,6 +6,7 @@ import io.khasang.restaurant.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -43,5 +44,15 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public List<Booking> getBookingByName(String name) {
         return bookingDao.getByName(name);
+    }
+
+    @Override
+    public List<Booking> getForPeriod(Date dateBegin, Date dateEnd) {
+        return bookingDao.getForPeriod(dateBegin, dateEnd);
+    }
+
+    @Override
+    public Boolean isBookingAvailable(Date dateBegin, Date dateEnd) {
+        return bookingDao.isBookingAvailable(dateBegin, dateEnd);
     }
 }
