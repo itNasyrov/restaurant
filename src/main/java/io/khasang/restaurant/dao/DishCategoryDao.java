@@ -1,18 +1,18 @@
 package io.khasang.restaurant.dao;
 
-import io.khasang.restaurant.entity.Dish;
+import io.khasang.restaurant.entity.DishCategory;
 
 import java.util.List;
 
-public interface DishDao extends BasicDao<Dish> {
+public interface DishCategoryDao extends BasicDao<DishCategory> {
 
     /**
-     * Create dish at database
+     * Create dish category at database
      *
-     * @param dish - dish
-     * @return dish
+     * @param dishCategory
+     * @return dishCategory
      */
-    Dish addDish(Dish dish);
+    DishCategory addDishCategory(DishCategory dishCategory);
 
-    List<Dish> findByName(String name);
+    List<DishCategory> findByName(String name);
 }

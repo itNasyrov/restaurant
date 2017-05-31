@@ -1,9 +1,10 @@
 package io.khasang.restaurant.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "dishs")
+@Table(name = "dishes")
 public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,10 +12,13 @@ public class Dish {
 
     private String name;
 
-    private int sellby;
+    private int realizationTime;
 
-    @Column(name = "id_category")
-    private long idCategory;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private DishCategory category;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Recipe> recipe;
 
     private String comment;
 
@@ -32,20 +36,16 @@ public class Dish {
         this.name = name;
     }
 
-    public int getSellby() {
-        return sellby;
+    public int getRealizationTime() {
+        return realizationTime;
     }
 
-    public void setSellby(int sellby) {
-        this.sellby = sellby;
+    public void setRealizationTime(int realizationTime) {
+        this.realizationTime = realizationTime;
     }
 
-    public long getIdCategory() {
-        return idCategory;
-    }
-
-    public void setIdCategory(long idCategory) {
-        this.idCategory = idCategory;
+    public DishCategory getIdCategory() {
+        return category;
     }
 
     public String getComment() {
@@ -54,5 +54,21 @@ public class Dish {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public void setCategory(DishCategory idCategory) {
+        this.category = idCategory;
+    }
+
+    public DishCategory getCategory() {
+        return category;
+    }
+
+    public List<Recipe> getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(List<Recipe> recipe) {
+        this.recipe = recipe;
     }
 }

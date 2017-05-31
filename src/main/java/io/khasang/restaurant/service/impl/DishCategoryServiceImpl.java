@@ -1,47 +1,45 @@
 package io.khasang.restaurant.service.impl;
 
-import io.khasang.restaurant.dao.DishDao;
-import io.khasang.restaurant.entity.Dish;
-import io.khasang.restaurant.service.DishService;
+import io.khasang.restaurant.dao.DishCategoryDao;
+import io.khasang.restaurant.entity.DishCategory;
+import io.khasang.restaurant.service.DishCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("dishService")
-public class DishServiceImpl implements DishService {
+@Service("dishCategoryService")
+public class DishCategoryServiceImpl implements DishCategoryService {
     @Autowired
-    private DishDao dishDao;
+    private DishCategoryDao dishCategoryDao;
 
     @Override
-    public Dish addDish(Dish dish) {
-        return dishDao.addDish(dish);
+    public DishCategory addDishCategory(DishCategory dishCategory) {
+        return dishCategoryDao.addDishCategory(dishCategory);
     }
 
     @Override
-    public List<Dish> getDishList() {
-        return dishDao.getList();
+    public List<DishCategory> getDishCategoryList() {
+        return dishCategoryDao.getList();
     }
 
     @Override
-    public Dish deleteDish(long id) {
-        return dishDao.delete(getDishById(id));
+    public DishCategory deleteDishCategory(long id) {
+        return dishCategoryDao.delete(getDishCategoryById(id));
     }
 
     @Override
-    public Dish getDishById(long id) {
-        return dishDao.getById(id);
+    public DishCategory getDishCategoryById(long id) {
+        return dishCategoryDao.getById(id);
     }
 
     @Override
-    public Dish updateDish(Dish dish) {
-        return dishDao.update(dish);
+    public DishCategory updateDishCategory(DishCategory dishCategory) {
+        return dishCategoryDao.update(dishCategory);
     }
 
     @Override
-    public List<Dish> getDishListByName(String name) {
-        return dishDao.findByName(name);
+    public List<DishCategory> getDishCategoryList(String name) {
+        return dishCategoryDao.findByName(name);
     }
-
-
 }

@@ -50,5 +50,5 @@ public interface DishService {
      * @param name - dish name
      * @return list of dish
      */
-    List<Dish> getDishListById(String name);
+    List<Dish> getDishListByName(String name);
 }

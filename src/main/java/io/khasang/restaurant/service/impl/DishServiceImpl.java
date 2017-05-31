@@ -39,7 +39,7 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public List<Dish> getDishListById(String name) {
+    public List<Dish> getDishListByName(String name) {
         return dishDao.findByName(name);
     }
 

@@ -1,54 +1,54 @@
 package io.khasang.restaurant.service;
 
-import io.khasang.restaurant.entity.Dish;
+import io.khasang.restaurant.entity.DishCategory;
 
 import java.util.List;
 
-public interface DishService {
+public interface DishCategoryService {
 
     /**
-     * Create dish at database
+     * Create category at database
      *
-     * @param dish - dish for creation
+     * @param dishCategory - dish category for creation
+     * @return dishCategory
+     */
+    DishCategory addDishCategory(DishCategory dishCategory);
+
+    /**
+     * Receive all dishCategory
+     *
+     * @return all dishCategory from database
+     */
+    List<DishCategory> getDishCategoryList();
+
+    /**
+     * Delete specified dishCategory by id
+     *
+     * @param id - id of dishCategory for deleting
      * @return dish
      */
-    Dish addDish(Dish dish);
+    DishCategory deleteDishCategory(long id);
 
     /**
-     * Receive all dish
+     * Receive dishCategory by id
      *
-     * @return all dish from database
+     * @param id - id dishCategory
+     * @return dishCategory
      */
-    List<Dish> getDishList();
+    DishCategory getDishCategoryById(long id);
 
     /**
-     * Delete specified dish by id
+     * {@link DishCategory} update
+     * @param dishCategory - category from request for update
+     * @return dishCategory
+     */
+    DishCategory updateDishCategory(DishCategory dishCategory);
+
+    /**
+     * Receive dishCategory from database by name
      *
-     * @param id - id of dish for deleting
-     * @return dish
+     * @param name - dishCategory name
+     * @return list of dishCategory
      */
-    Dish deleteDish(long id);
-
-    /**
-     * Receive dish by id
-     *
-     * @param id - id dish
-     * @return dish
-     */
-    Dish getDishById(long id);
-
-    /**
-     * Dish update
-     * @param dish - dish from request for update
-     * @return dish
-     */
-    Dish updateDish(Dish dish);
-
-    /**
-     * Receive dish from database by name
-     *
-     * @param name - dish name
-     * @return list of dish
-     */
-    List<Dish> getDishListById(String name);
+    List<DishCategory> getDishCategoryList(String name);
 }

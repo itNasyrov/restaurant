@@ -1,7 +1,7 @@
 package io.khasang.restaurant.controller;
 
-import io.khasang.restaurant.entity.Dish;
-import io.khasang.restaurant.service.DishService;
+import io.khasang.restaurant.entity.DishCategory;
+import io.khasang.restaurant.service.DishCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -9,46 +9,46 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/dish")
-public class DishController {
+@RequestMapping("/dishcategory")
+public class DishCategoryController {
     @Autowired
-    private DishService dishService;
+    private DishCategoryService dishCategoryService;
 
     @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Dish addDocument(@RequestBody Dish dish){
-        return dishService.addDish(dish);
+    public DishCategory addDocument(@RequestBody DishCategory dishCategory){
+        return dishCategoryService.addDishCategory(dishCategory);
     }
 
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Dish> getDocumentList(){
-        return dishService.getDishList();
+    public List<DishCategory> getDocumentList(){
+        return dishCategoryService.getDishCategoryList();
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public Dish deleteDish(@PathVariable(value = "id") String id) {
-        return dishService.deleteDish(Long.parseLong(id));
+    public DishCategory deleteDishCategory(@PathVariable(value = "id") String id) {
+        return dishCategoryService.deleteDishCategory(Long.parseLong(id));
     }
 
     @RequestMapping(value = "/get/id/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Dish getDishById(@PathVariable(value = "id") String id) {
-        return dishService.getDishById(Long.parseLong(id));
+    public DishCategory getDishCategoryById(@PathVariable(value = "id") String id) {
+        return dishCategoryService.getDishCategoryById(Long.parseLong(id));
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Dish updateDish(@RequestBody Dish dish) {
-        dishService.updateDish(dish);
-        return dish;
+    public DishCategory updateDish(@RequestBody DishCategory dishCategory) {
+        dishCategoryService.updateDishCategory(dishCategory);
+        return dishCategory;
     }
 
     @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
     @ResponseBody
-    public List<Dish> getDishListById(@PathVariable(value = "name") String name) {
-        return dishService.getDishListById(name);
+    public List<DishCategory> getDishCategoryListById(@PathVariable(value = "name") String name) {
+        return dishCategoryService.getDishCategoryList(name);
     }
 }

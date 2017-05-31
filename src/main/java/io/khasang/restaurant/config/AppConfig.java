@@ -1,12 +1,15 @@
 package io.khasang.restaurant.config;
 
+import io.khasang.restaurant.dao.DishCategoryDao;
 import io.khasang.restaurant.dao.DishDao;
 import io.khasang.restaurant.dao.DocumentDao;
 import io.khasang.restaurant.dao.RecipeDao;
+import io.khasang.restaurant.dao.impl.DishCategoryDaoImpl;
 import io.khasang.restaurant.dao.impl.DishDaoImpl;
 import io.khasang.restaurant.dao.impl.DocumentDaoImpl;
 import io.khasang.restaurant.dao.impl.RecipeDaoImpl;
 import io.khasang.restaurant.entity.Dish;
+import io.khasang.restaurant.entity.DishCategory;
 import io.khasang.restaurant.entity.Document;
 import io.khasang.restaurant.entity.Recipe;
 import io.khasang.restaurant.model.Cat;
@@ -59,6 +62,9 @@ public class AppConfig {
 
     @Bean
     public RecipeDao recipeDao(){ return new RecipeDaoImpl(Recipe.class); }
+
+    @Bean
+    public DishCategoryDao dishCategoryDao(){ return new DishCategoryDaoImpl(DishCategory.class); }
 
     @Bean
     public JdbcTemplate jdbcTemplate() {

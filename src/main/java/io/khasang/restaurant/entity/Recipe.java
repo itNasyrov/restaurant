@@ -4,8 +4,6 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "recipes")
@@ -14,11 +12,8 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "id_dish")
-    private long idDish;
-
-    //@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    //private List<IngredientReclipe> ingredient = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Dish dish;
 
     private float proteins;
 
@@ -35,7 +30,8 @@ public class Recipe {
     @Column(name = "time_сooking")
     private Time timeCooking;
 
-    @Type(type="text")
+    @Column(name = "recipe_text")
+    @Type(type = "text")
     private String recipeText;
 
     public long getId() {
@@ -46,12 +42,12 @@ public class Recipe {
         this.id = id;
     }
 
-    public long getIdDish() {
-        return idDish;
+    public Dish getDish() {
+        return dish;
     }
 
-    public void setIdDish(long idDish) {
-        this.idDish = idDish;
+    public void setDish(Dish dish) {
+        this.dish = dish;
     }
 
     public float getProteins() {
@@ -102,14 +98,6 @@ public class Recipe {
         this.recipeText = recipeText;
     }
 
-    /*public List<IngredientReclipe> getIngredient() {
-        return ingredient;
-    }
-
-    public void setIngredient(List<IngredientReclipe> ingredient) {
-        this.ingredient = ingredient;
-    }
-*/
     public Time getTimeCooking() {
         return timeCooking;
     }

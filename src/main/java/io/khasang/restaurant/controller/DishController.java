@@ -49,6 +49,6 @@ public class DishController {
     @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
     @ResponseBody
     public List<Dish> getDishListById(@PathVariable(value = "name") String name) {
-        return dishService.getDishListById(name);
+        return dishService.getDishListByName(name);
     }
 }

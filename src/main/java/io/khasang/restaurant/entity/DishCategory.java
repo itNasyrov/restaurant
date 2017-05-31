@@ -3,8 +3,8 @@ package io.khasang.restaurant.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "category_dish")
-public class CategoryDish {
+@Table(name = "dish_category")
+public class DishCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
