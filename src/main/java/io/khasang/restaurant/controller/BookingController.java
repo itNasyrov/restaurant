@@ -27,7 +27,7 @@ public class BookingController {
         return bookingService.getBookingList();
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Booking updateBooking(@RequestBody Booking booking){
         bookingService.updateBooking(booking);
