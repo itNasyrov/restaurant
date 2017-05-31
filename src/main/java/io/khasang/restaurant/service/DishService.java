@@ -19,7 +19,7 @@ public interface DishService {
      *
      * @return all dish from database
      */
-    List<Dish> getDocumentList();
+    List<Dish> getDishList();
 
     /**
      * Delete specified dish by id

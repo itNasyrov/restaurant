@@ -2,10 +2,13 @@ package io.khasang.restaurant.config;
 
 import io.khasang.restaurant.dao.DishDao;
 import io.khasang.restaurant.dao.DocumentDao;
+import io.khasang.restaurant.dao.RecipeDao;
 import io.khasang.restaurant.dao.impl.DishDaoImpl;
 import io.khasang.restaurant.dao.impl.DocumentDaoImpl;
+import io.khasang.restaurant.dao.impl.RecipeDaoImpl;
 import io.khasang.restaurant.entity.Dish;
 import io.khasang.restaurant.entity.Document;
+import io.khasang.restaurant.entity.Recipe;
 import io.khasang.restaurant.model.Cat;
 import io.khasang.restaurant.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +56,9 @@ public class AppConfig {
     public DishDao dishDao(){
         return new DishDaoImpl(Dish.class);
     }
+
+    @Bean
+    public RecipeDao recipeDao(){ return new RecipeDaoImpl(Recipe.class); }
 
     @Bean
     public JdbcTemplate jdbcTemplate() {

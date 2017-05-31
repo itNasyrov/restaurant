@@ -19,7 +19,7 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public List<Dish> getDocumentList() {
+    public List<Dish> getDishList() {
         return dishDao.getList();
     }
 

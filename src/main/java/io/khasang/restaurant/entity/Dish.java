@@ -1,7 +1,6 @@
 package io.khasang.restaurant.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
 @Table(name = "dishs")
@@ -12,7 +11,7 @@ public class Dish {
 
     private String name;
 
-    private Date Sellby;
+    private int sellby;
 
     @Column(name = "id_category")
     private long idCategory;
@@ -33,12 +32,12 @@ public class Dish {
         this.name = name;
     }
 
-    public Date getSellby() {
-        return Sellby;
+    public int getSellby() {
+        return sellby;
     }
 
-    public void setSellby(Date sellby) {
-        Sellby = sellby;
+    public void setSellby(int sellby) {
+        this.sellby = sellby;
     }
 
     public long getIdCategory() {

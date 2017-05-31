@@ -24,7 +24,7 @@ public class DishController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public List<Dish> getDocumentList(){
-        return dishService.getDocumentList();
+        return dishService.getDishList();
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

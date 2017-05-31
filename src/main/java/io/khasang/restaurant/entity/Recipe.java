@@ -17,8 +17,8 @@ public class Recipe {
     @Column(name = "id_dish")
     private long idDish;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<IngredientReclipe> ingredient = new ArrayList<>();
+    //@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    //private List<IngredientReclipe> ingredient = new ArrayList<>();
 
     private float proteins;
 
@@ -102,14 +102,14 @@ public class Recipe {
         this.recipeText = recipeText;
     }
 
-    public List<IngredientReclipe> getIngredient() {
+    /*public List<IngredientReclipe> getIngredient() {
         return ingredient;
     }
 
     public void setIngredient(List<IngredientReclipe> ingredient) {
         this.ingredient = ingredient;
     }
-
+*/
     public Time getTimeCooking() {
         return timeCooking;
     }
