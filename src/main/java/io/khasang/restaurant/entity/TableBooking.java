@@ -1,13 +1,10 @@
 package io.khasang.restaurant.entity;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import javax.persistence.*;
-import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-/**
- * Created by firesome on 27.05.2017.
- */
 @Entity
 @Table(name = "table_bookings")
 public class TableBooking {
@@ -18,32 +15,32 @@ public class TableBooking {
     /**
      * Registered customer who books the table
      */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     /**
      * Table that is booked by the customer
      */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "table_id", nullable = false)
-    private RestaurantTable table;
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    private List<RestaurantTable> tables = new ArrayList<>();
 
     /**
      * Date/time for which the table is booked
      */
-    private Calendar bookTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date bookTime;
 
     /**
      * Status of the booking. Default is TABLE_BOOKED
      */
     private BookingStatus status;
 
-    @Transient
-    private JdbcTemplate jdbcTemplate;
-
-
     // methods
+
+    public TableBooking() {
+
+    }
 
     public long getId() {
         return id;
@@ -61,19 +58,19 @@ public class TableBooking {
         this.customer = customer;
     }
 
-    public RestaurantTable getTable() {
-        return table;
+    public List<RestaurantTable> getTables() {
+        return tables;
     }
 
-    public void setTable(RestaurantTable table) {
-        this.table = table;
+    public void setTables(List<RestaurantTable> tables) {
+        this.tables = tables;
     }
 
-    public Calendar getBookTime() {
+    public Date getBookTime() {
         return bookTime;
     }
 
-    public void setBookTime(Calendar bookTime) {
+    public void setBookTime(Date bookTime) {
         this.bookTime = bookTime;
     }
 
@@ -85,13 +82,4 @@ public class TableBooking {
         this.status = status;
     }
 
-    public JdbcTemplate getJdbcTemplate() {
-        return jdbcTemplate;
-    }
-
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
-    // todo: implement preorder for registered customers
 }

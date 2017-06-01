@@ -2,9 +2,14 @@ package io.khasang.restaurant.dao;
 
 import io.khasang.restaurant.entity.TableBooking;
 
-/**
- * Created by firesome on 27.05.2017.
- */
+import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
+
 public interface TableBookingDao extends BasicDao<TableBooking> {
+
+    List<TableBooking> getAllTableBookings(Date bookTime) throws ParseException;
+
+    int getAvailableTablesCount(Date bookTime) throws ParseException;
 
 }

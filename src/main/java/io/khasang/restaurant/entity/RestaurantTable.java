@@ -2,16 +2,12 @@ package io.khasang.restaurant.entity;
 
 import javax.persistence.*;
 
-/**
- * Created by firesome on 27.05.2017.
- */
 @Entity
 @Table(name = "tables")
 public class RestaurantTable {
     /**
      * Table number
      */
-    // todo: mapping RestaurantTable (one) <-> TableBooking.table (many)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -21,6 +17,9 @@ public class RestaurantTable {
      */
     private int capacity;
 
+    public RestaurantTable() {
+
+    }
 
     public long getId() {
         return id;
@@ -37,4 +36,5 @@ public class RestaurantTable {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
 }

@@ -1,8 +1,5 @@
 package io.khasang.restaurant.model;
 
-/**
- * Created by firesome on 28.05.2017.
- */
 public class ExceptionJSONInfo {
 
     private String url;

@@ -1,29 +1,26 @@
 package io.khasang.restaurant.service;
 
-import io.khasang.restaurant.entity.RestaurantTable;
 import io.khasang.restaurant.entity.TableBooking;
 
-import java.util.Calendar;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
-/**
- * Created by firesome on 27.05.2017.
- */
 public interface TableBookingService {
 
     /**
-     * Gets list of tables available for the specified date/time
+     * Gets list of table bookings available for the specified date/time
      * @param bookTime - Date/time to make a snapshot of available tables
      * @return List of tables available for the specified date/time
      */
-    List<RestaurantTable> getAvailableTables(Calendar bookTime);
+    List<TableBooking> getAllTableBookings(Date bookTime) throws ParseException;
 
     /**
      * Gets number of tables available for the specified date/time
      * @param bookTime - Date/time to make a snapshot of available tables
      * @return Number of tables available for the specified date/time
      */
-    int getAvailableTablesCount(Calendar bookTime);
+    int getAvailableTablesCount(Date bookTime) throws ParseException;
 
     /**
      * Creates table booking
