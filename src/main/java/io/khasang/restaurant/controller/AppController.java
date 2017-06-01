@@ -1,9 +1,6 @@
 package io.khasang.restaurant.controller;
 
-import io.khasang.restaurant.entity.Document;
-import io.khasang.restaurant.model.Cat;
 import io.khasang.restaurant.model.Message;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,26 +12,20 @@ import java.util.List;
 
 @Controller
 public class AppController {
-    @Autowired
-    private Message message;
-    @Autowired
-    private Cat cat;
-
     @RequestMapping("/")
     public String hello() {
-        return "document";
+        return "index";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String createTable(Model model){
-        model.addAttribute("create", cat.createCatTable());
-        return "create";
+    @RequestMapping("/role")
+    public String getRoles() {
+        return "role";
     }
 
     @RequestMapping("/list")
     public String getList(Model model){
         List<Message> messagesList = new ArrayList<>();
-        messagesList.add(new Message(3, "Cat"));
+        messagesList.add(new Message(3, "Catty"));
         messagesList.add(new Message(2, "Dog"));
         model.addAttribute("list", messagesList);
         return "list";
