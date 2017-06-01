@@ -1,7 +1,13 @@
 package io.khasang.restaurant.service;
 
-/**
- * Created by dinar on 28.05.2017.
- */
+import io.khasang.restaurant.entity.Role;
+
 public interface RoleService {
+    /**
+     * Create role at database
+     *
+     * @param role - role for creation
+     * @return role
+     */
+    Role addRole(Role role);
 }

@@ -1,11 +1,15 @@
-<<<<<<< Updated upstream
+
 package io.khasang.restaurant.config;
 
 import io.khasang.restaurant.dao.DocumentDao;
+import io.khasang.restaurant.dao.RoleDao;
+import io.khasang.restaurant.dao.UserDao;
 import io.khasang.restaurant.dao.impl.DocumentDaoImpl;
+import io.khasang.restaurant.dao.impl.RoleDaoImpl;
+import io.khasang.restaurant.dao.impl.UserDaoImpl;
 import io.khasang.restaurant.entity.Document;
-import io.khasang.restaurant.model.Cat;
-import io.khasang.restaurant.model.Message;
+import io.khasang.restaurant.entity.Role;
+import io.khasang.restaurant.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,40 +52,21 @@ public class AppConfig {
     }
 
     @Bean
+    public RoleDao roleDao() {
+        return new RoleDaoImpl(Role.class) {
+        };
+    }
+
+    @Bean
+    public UserDao userDao(){
+        return new UserDaoImpl(User.class);
+    }
+
+    @Bean
     public JdbcTemplate jdbcTemplate() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
     }
-
-    @Bean
-    public Cat cat() {
-        return new Cat(jdbcTemplate());
-    }
-
-    @Bean
-    public Message message() {
-        return new Message("hello bean!");
-    }
 }
-
-/**package io.khasang.restaurant.config;
-
-import io.khasang.restaurant.model.Message;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-
-/**
- * Created by dinar on 17.05.2017.
-
-@Configuration
-@PropertySource(value = "util.properties")
-public class AppConfig {
-    @Bean
-    public Message message(){
-        return new Message("Hello, Bean!");
-    }
-}
-*/
 
