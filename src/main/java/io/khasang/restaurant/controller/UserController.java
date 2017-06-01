@@ -18,5 +18,8 @@ public class UserController {
     @RequestMapping(value ="/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8");
     @ResponseBody
     public User addUser(@RequestBody User user){
-        return userService.addUser(user);}
+        return userService.addUser(user);
+    }
+
+    @RequestMapping
 }
