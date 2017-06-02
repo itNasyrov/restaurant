@@ -85,6 +85,23 @@ public class RoleControllerIntegrationTest {
         assertNull(checkRoleExist.getBody());
     }
 
+    @Test
+    public void getAllRoles() {
+        RestTemplate restTemplate = new RestTemplate();
+        createRole();
+        createRole();
+
+        ResponseEntity<List<Role>> responseEntity = restTemplate.exchange(
+                ROOT + ALL,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Role>>() {
+                }
+        );
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertNotNull(responseEntity.getBody());
+    }
+
     private Role createRole()  {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
@@ -109,21 +126,5 @@ public class RoleControllerIntegrationTest {
         return role;
     }
 
-    @Test
-    public void getAllRoles() {
-        RestTemplate restTemplate = new RestTemplate();
-        createRole();
-        createRole();
-
-        ResponseEntity<List<Role>> responseEntity = restTemplate.exchange(
-                ROOT + ALL,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<Role>>() {
-                }
-        );
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertNotNull(responseEntity.getBody());
-    }
 
 }

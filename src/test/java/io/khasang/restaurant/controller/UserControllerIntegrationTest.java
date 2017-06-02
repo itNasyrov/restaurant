@@ -84,6 +84,23 @@ public class UserControllerIntegrationTest {
         assertNull(checkUserExist.getBody());
     }
 
+    @Test
+    public void getAllUsers() {
+        RestTemplate restTemplate = new RestTemplate();
+        createUser();
+        createUser();
+
+        ResponseEntity<List<User>> responseEntity = restTemplate.exchange(
+                ROOT + ALL,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<User>>() {
+                }
+        );
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertNotNull(responseEntity.getBody());
+    }
+
     private User createUser()  {
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
@@ -108,23 +125,5 @@ public class UserControllerIntegrationTest {
         user.setLogin("Devotee");
         return user;
     }
-
-    @Test
-    public void getAllUsers() {
-        RestTemplate restTemplate = new RestTemplate();
-        createUser();
-        createUser();
-
-        ResponseEntity<List<User>> responseEntity = restTemplate.exchange(
-                ROOT + ALL,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<User>>() {
-                }
-        );
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertNotNull(responseEntity.getBody());
-    }
-
 
 }
