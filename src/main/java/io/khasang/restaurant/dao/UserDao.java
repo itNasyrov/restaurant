@@ -2,7 +2,7 @@ package io.khasang.restaurant.dao;
 
 import io.khasang.restaurant.entity.User;
 
-public interface UserDao {
+public interface UserDao extends BasicDao<User>{
     /**
      * Create user at database
      *

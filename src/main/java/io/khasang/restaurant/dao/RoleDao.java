@@ -2,7 +2,7 @@ package io.khasang.restaurant.dao;
 
 import io.khasang.restaurant.entity.Role;
 
-public interface RoleDao {
+public interface RoleDao extends BasicDao<Role>{
     /**
      * Create role at database
      *
