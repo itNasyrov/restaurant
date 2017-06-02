@@ -1,7 +1,6 @@
 package io.khasang.restaurant.controller;
 
 
-import io.khasang.restaurant.entity.Document;
 import io.khasang.restaurant.entity.User;
 import io.khasang.restaurant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

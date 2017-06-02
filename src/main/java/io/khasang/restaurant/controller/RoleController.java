@@ -17,7 +17,7 @@ public class RoleController {
     @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Role addRole(@RequestBody Role role){
-        
+
         return roleService.addRole(role);
     }
 

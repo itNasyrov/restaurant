@@ -52,10 +52,7 @@ public class AppConfig {
     }
 
     @Bean
-    public RoleDao roleDao() {
-        return new RoleDaoImpl(Role.class) {
-        };
-    }
+    public RoleDao roleDao() { return new RoleDaoImpl(Role.class); }
 
     @Bean
     public UserDao userDao(){
