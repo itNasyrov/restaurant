@@ -5,6 +5,8 @@ import io.khasang.restaurant.entity.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao{
     @Autowired
     SessionFactory sessionFactory;
@@ -19,5 +21,10 @@ public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao{
     public User addUser(User user){
         sessionFactory.getCurrentSession().save(user);
         return user;
+    }
+
+    @Override
+    public List<User> findByName(String name) {
+        return null;
     }
 }

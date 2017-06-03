@@ -114,6 +114,7 @@ public class UserControllerIntegrationTest {
                     User.class).getBody();
         assertNotNull(result);
         assertEquals("Dinar", result.getName());
+        assertEquals("Devotee", result.getLogin());
         assertNotNull(result.getId());
             return result;
 
