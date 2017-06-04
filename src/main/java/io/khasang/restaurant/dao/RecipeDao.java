@@ -14,5 +14,5 @@ public interface RecipeDao extends BasicDao<Recipe> {
      */
     Recipe addRecipe(Recipe recipe);
 
-    List<Recipe> findByName(String name);
+    List<Recipe> findByText(String text);
 }

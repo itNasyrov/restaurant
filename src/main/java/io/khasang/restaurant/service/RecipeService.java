@@ -47,8 +47,8 @@ public interface RecipeService {
     /**
      * Receive Recipe from database by name
      *
-     * @param name - Recipe name
+     * @param text - Recipe text
      * @return list of Recipe
      */
-    List<Recipe> getRecipeListById(String name);
+    List<Recipe> getRecipeListByText(String text);
 }

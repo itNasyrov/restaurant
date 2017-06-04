@@ -46,9 +46,9 @@ public class RecipeController {
         return recipe;
     }
 
-    @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get/text/{text}", method = RequestMethod.GET)
     @ResponseBody
-    public List<Recipe> getRecipeListById(@PathVariable(value = "name") String name) {
-        return recipeService.getRecipeListById(name);
+    public List<Recipe> getRecipeListById(@PathVariable(value = "text") String text) {
+        return recipeService.getRecipeListByText(text);
     }
 }
