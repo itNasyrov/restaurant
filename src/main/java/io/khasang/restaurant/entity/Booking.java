@@ -1,7 +1,7 @@
 package io.khasang.restaurant.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Entity
@@ -11,17 +11,15 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "date_begin")
-    @Temporal(TemporalType.DATE)
-    private Date dateBegin;
+    private Timestamp dateBegin;
     @Column(name = "date_end")
-    @Temporal(TemporalType.DATE)
-    private Date dateEnd;
+    private Timestamp dateEnd;
     @Column(name = "id_event")
-    private int idEvents;
+    private int idEvent;
     @Column(name = "id_menu")
     private int idMenu;
     @Column(name = "total_price")
-    private double priceOfEventAndMenu;
+    private BigDecimal priceOfEventAndMenu;
     private String client;
     private String phone;
     private int quantity;
@@ -34,28 +32,28 @@ public class Booking {
         this.id = id;
     }
 
-    public Date getDateBegin() {
+    public Timestamp getDateBegin() {
         return dateBegin;
     }
 
-    public void setDateBegin(Date dateBegin) {
+    public void setDateBegin(Timestamp dateBegin) {
         this.dateBegin = dateBegin;
     }
 
-    public Date getDateEnd() {
+    public Timestamp getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(Date dateEnd) {
+    public void setDateEnd(Timestamp dateEnd) {
         this.dateEnd = dateEnd;
     }
 
-    public int getIdEvents() {
-        return idEvents;
+    public int getIdEvent() {
+        return idEvent;
     }
 
-    public void setIdEvents(int idIvents) {
-        this.idEvents = idIvents;
+    public void setIdEvent(int idIvent) {
+        this.idEvent = idIvent;
     }
 
     public int getIdMenu() {
@@ -66,11 +64,11 @@ public class Booking {
         this.idMenu = idMenu;
     }
 
-    public double getPriceOfEventAndMenu() {
+    public BigDecimal getPriceOfEventAndMenu() {
         return priceOfEventAndMenu;
     }
 
-    public void setPriceOfEventAndMenu(double priceOfEventAndMenu) {
+    public void setPriceOfEventAndMenu(BigDecimal priceOfEventAndMenu) {
         this.priceOfEventAndMenu = priceOfEventAndMenu;
     }
 

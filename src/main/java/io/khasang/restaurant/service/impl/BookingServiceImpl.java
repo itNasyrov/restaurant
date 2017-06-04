@@ -6,7 +6,7 @@ import io.khasang.restaurant.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -47,12 +47,12 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> getForPeriod(Date dateBegin, Date dateEnd) {
+    public List<Booking> getForPeriod(Timestamp dateBegin, Timestamp dateEnd) {
         return bookingDao.getForPeriod(dateBegin, dateEnd);
     }
 
     @Override
-    public Boolean isBookingAvailable(Date dateBegin, Date dateEnd) {
+    public Boolean isBookingAvailable(Timestamp dateBegin, Timestamp dateEnd) {
         return bookingDao.isBookingAvailable(dateBegin, dateEnd);
     }
 }

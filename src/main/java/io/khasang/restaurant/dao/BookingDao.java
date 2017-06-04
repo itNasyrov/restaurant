@@ -2,7 +2,7 @@ package io.khasang.restaurant.dao;
 
 import io.khasang.restaurant.entity.Booking;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface BookingDao extends BasicDao<Booking>{
@@ -30,7 +30,7 @@ public interface BookingDao extends BasicDao<Booking>{
      * @param dateEnd - end date of period
      * @return bookings list
      */
-    List<Booking> getForPeriod(Date dateBegin, Date dateEnd);
+    List<Booking> getForPeriod(Timestamp dateBegin, Timestamp dateEnd);
 
     /**
      * Booking availability check
@@ -39,5 +39,5 @@ public interface BookingDao extends BasicDao<Booking>{
      * @param dateEnd - end date of period
      * @return flag is true, if booking is available
      */
-    Boolean isBookingAvailable(Date dateBegin, Date dateEnd);
+    Boolean isBookingAvailable(Timestamp dateBegin, Timestamp dateEnd);
 }

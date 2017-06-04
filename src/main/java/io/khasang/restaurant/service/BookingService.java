@@ -2,7 +2,7 @@ package io.khasang.restaurant.service;
 
 import io.khasang.restaurant.entity.Booking;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface BookingService {
@@ -48,6 +48,21 @@ public interface BookingService {
      */
     List<Booking> getBookingByName(String name);
 
-    List<Booking> getForPeriod(Date dateBegin, Date dateEnd);
-    Boolean isBookingAvailable(Date dateBegin, Date dateEnd);
+    /**
+     * Receive booking list for period
+     *
+     * @param dateBegin - begin of period
+     * @param dateEnd - end of period
+     * @return booking list
+     */
+    List<Booking> getForPeriod(Timestamp dateBegin, Timestamp dateEnd);
+
+    /**
+     * Availability booking check
+     *
+     * @param dateBegin - begin of book
+     * @param dateEnd - end of book
+     * @return true if booking is available
+     */
+    Boolean isBookingAvailable(Timestamp dateBegin, Timestamp dateEnd);
 }
