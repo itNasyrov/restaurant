@@ -29,4 +29,11 @@ public class UserController {
         return userService.getUserList();
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public User updateDocument(@RequestBody User user){
+        userService.updateUser(user);
+        return user;
+    }
+
 }

@@ -17,4 +17,11 @@ public interface UserService {
      * @return users list
      */
     List<User> getUserList();
+
+    /**
+     * Update user
+     * @param user - user from request from update
+     * @return
+     */
+    User updateUser(User user);
 }

@@ -11,8 +11,8 @@ public class User {
     private String name;
     private String login;
     private String password;
-    @Column(name = "role_id")
-    private int roleId;
+    //@Column(name = "role_id")
+    private long roleId;
 
     public long getId() {
         return id;
@@ -46,11 +46,11 @@ public class User {
         this.password = password;
     }
 
-    public int getRoleId() {
+    public long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(long roleId) {
         this.roleId = roleId;
     }
 }

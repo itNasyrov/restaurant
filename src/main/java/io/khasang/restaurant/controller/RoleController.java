@@ -17,8 +17,25 @@ public class RoleController {
     @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Role addRole(@RequestBody Role role){
-
         return roleService.addRole(role);
+    }
+    
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public Role updateRole(@RequestBody Role role){
+        return roleService.updateRole(role);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Role deleteRole(@PathVariable(value = "id") String id){
+        return roleService.deleteRole(Long.parseLong(id));
+    }
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Role> getDocumentList(){
+        return roleService.getRoleList();
     }
 
 
