@@ -1,9 +1,8 @@
 package io.khasang.restaurant.entity;
 
-import org.hibernate.annotations.Type;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.sql.Time;
 
 @Entity
 @Table(name = "recipes")
@@ -13,6 +12,8 @@ public class Recipe {
     private long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JoinColumn(name = "dish_id")
     private Dish dish;
 
     private float proteins;
@@ -28,10 +29,9 @@ public class Recipe {
     private int servingGram;
 
     @Column(name = "time_сooking")
-    private Time timeCooking;
+    private int timeCookingMinutes;
 
-    @Column(name = "recipe_text")
-    @Type(type = "text")
+    @Column(name = "recipe_text", columnDefinition="TEXT")
     private String recipeText;
 
     public long getId() {
@@ -98,11 +98,11 @@ public class Recipe {
         this.recipeText = recipeText;
     }
 
-    public Time getTimeCooking() {
-        return timeCooking;
+    public int getTimeCookingMinutes() {
+        return timeCookingMinutes;
     }
 
-    public void setTimeCooking(Time timeCooking) {
-        this.timeCooking = timeCooking;
+    public void setTimeCookingMinutes(int timeCookingMinutes) {
+        this.timeCookingMinutes = timeCookingMinutes;
     }
 }

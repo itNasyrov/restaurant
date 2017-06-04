@@ -1,6 +1,9 @@
 package io.khasang.restaurant.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,13 +15,15 @@ public class Dish {
 
     private String name;
 
-    private int realizationTime;
+    private int realizationTimeHours;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @JoinColumn(name = "category_id")
     private DishCategory category;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Recipe> recipe;
+    @OneToMany(mappedBy = "dish", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Recipe> recipes = new ArrayList<>();
 
     private String comment;
 
@@ -36,12 +41,12 @@ public class Dish {
         this.name = name;
     }
 
-    public int getRealizationTime() {
-        return realizationTime;
+    public int getRealizationTimeHours() {
+        return realizationTimeHours;
     }
 
-    public void setRealizationTime(int realizationTime) {
-        this.realizationTime = realizationTime;
+    public void setRealizationTimeHours(int realizationTime) {
+        this.realizationTimeHours = realizationTime;
     }
 
     public DishCategory getIdCategory() {
@@ -56,19 +61,31 @@ public class Dish {
         this.comment = comment;
     }
 
-    public void setCategory(DishCategory idCategory) {
-        this.category = idCategory;
+    public void setCategory(DishCategory category) {
+        this.category = category;
     }
 
     public DishCategory getCategory() {
         return category;
     }
 
-    public List<Recipe> getRecipe() {
-        return recipe;
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
 
-    public void setRecipe(List<Recipe> recipe) {
-        this.recipe = recipe;
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public void addRecipe(Recipe recipe) {
+        recipe.setDish(this);
+        recipes.add(recipe);
+    }
+
+    public void removeRecipe(Recipe recipe) {
+        recipes.remove(recipe);
+        if (recipe != null) {
+            recipe.setDish(null);
+        }
     }
 }
