@@ -4,15 +4,12 @@ import io.khasang.restaurant.entity.User;
 import io.khasang.restaurant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -36,4 +33,21 @@ public class UserController {
         return user;
     }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public User deleteUser(@PathVariable(value = "id") String id){
+        return userService.deleteUser(Long.parseLong(id));
+    }
+
+    @RequestMapping(value = "/get/id/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public User getUserById(@PathVariable(value = "id") String id){
+        return userService.getUserById(Long.parseLong(id));
+    }
+
+    @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<User> getUserListByName(@PathVariable(value = "name") String name){
+        return userService.getUserListByName(name);
+    }
 }

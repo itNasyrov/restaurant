@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class UserControllerIntegrationTest {
-    private final String ROOT = "http://localhost:8080/user";
+    private final String ROOT = "http://localhost:8080/users";
     private final String ADD = "/add";
     private final String UPDATE = "/update";
     private final String GET_ID = "/get/id/";

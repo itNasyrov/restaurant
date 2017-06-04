@@ -3,7 +3,7 @@ package io.khasang.restaurant.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "restaurant_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

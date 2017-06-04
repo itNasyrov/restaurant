@@ -24,4 +24,27 @@ public interface UserService {
      * @return
      */
     User updateUser(User user);
+
+    /**
+     * Delete specified user by id
+     *
+     * @param id - id of user for deleting
+     */
+    User deleteUser(long id);
+
+    /**
+     * Receive user by id
+     *
+     * @param id - id user
+     * @return user
+     */
+    User getUserById(long id);
+
+    /**
+     * Receive user from database by name
+     *
+     * @param name - user name
+     * @return list of users
+     */
+    List<User> getUserListByName(String name);
 }
