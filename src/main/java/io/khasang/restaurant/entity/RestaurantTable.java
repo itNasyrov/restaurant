@@ -21,6 +21,11 @@ public class RestaurantTable {
 
     }
 
+    public RestaurantTable(long id, int capacity) {
+        this.id = id;
+        this.capacity = capacity;
+    }
+
     public long getId() {
         return id;
     }

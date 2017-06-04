@@ -1,5 +1,7 @@
 package io.khasang.restaurant.entity;
 
+import io.khasang.restaurant.model.BookingStatus;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;

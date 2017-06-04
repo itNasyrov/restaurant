@@ -43,28 +43,20 @@ public class DocumentController {
         return document;
     }
 
-    /*
-    @RequestMapping(value = "/get/id/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public Document getDocumentById(@PathVariable(value = "id") String id){
-        return documentService.getDocumentById(Long.parseLong(id));
-    }
-     */
-
     @RequestMapping(value = "/get/id/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public Document getDocumentById(@PathVariable(value = "id") String id) throws DocumentNotFoundException {
-        Document booking = documentService.getDocumentById(Long.parseLong(id));
-        if (booking == null) {
+        Document document = documentService.getDocumentById(Long.parseLong(id));
+        if (document == null) {
             throw new DocumentNotFoundException(id);
         }
-        return booking;
+        return document;
     }
 
     @ExceptionHandler(DocumentNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public @ResponseBody
-    ExceptionJSONInfo handleEmployeeNotFoundException(HttpServletRequest request, Exception ex) {
+    ExceptionJSONInfo handleDocumentNotFoundException(HttpServletRequest request, Exception ex) {
         ExceptionJSONInfo response = new ExceptionJSONInfo();
         response.setUrl(request.getRequestURL().toString());
         response.setMessage(ex.getMessage());

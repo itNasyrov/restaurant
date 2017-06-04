@@ -1,4 +1,4 @@
-package io.khasang.restaurant.entity;
+package io.khasang.restaurant.model;
 
 public enum BookingStatus {
     TABLE_BOOKED,

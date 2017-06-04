@@ -1,5 +1,7 @@
 package io.khasang.restaurant.entity;
 
+import io.khasang.restaurant.model.BookingStatus;
+
 import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;

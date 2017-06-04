@@ -53,7 +53,7 @@ public class TableBookingController {
 
     @RequestMapping(value = "/get/id/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public TableBooking getDocumentById(@PathVariable(value = "id") String id) {
+    public TableBooking getBookingById(@PathVariable(value = "id") String id) {
         return tableBookingService.getBookingById(Long.parseLong(id));
     }
 

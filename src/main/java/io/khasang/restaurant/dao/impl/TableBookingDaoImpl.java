@@ -1,7 +1,7 @@
 package io.khasang.restaurant.dao.impl;
 
 import io.khasang.restaurant.dao.TableBookingDao;
-import io.khasang.restaurant.entity.BookingStatus;
+import io.khasang.restaurant.model.BookingStatus;
 import io.khasang.restaurant.entity.RestaurantTable;
 import io.khasang.restaurant.entity.TableBooking;
 import io.khasang.restaurant.entity.TableBooking_;
@@ -14,7 +14,9 @@ import javax.persistence.criteria.Root;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class TableBookingDaoImpl extends BasicDaoImpl<TableBooking> implements TableBookingDao {
 
@@ -39,9 +41,6 @@ public class TableBookingDaoImpl extends BasicDaoImpl<TableBooking> implements T
 
     @Override
     public int getAvailableTablesCount(Date bookTime) throws ParseException {
-
-        // свободные столы = все столы - закрытые для брони
-        // закрытые для брони столы = все, у кого статус TABLE_BOOKED или TABLE_OPENED
 
         Class entityClass = RestaurantTable.class;
         CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
@@ -69,10 +68,7 @@ public class TableBookingDaoImpl extends BasicDaoImpl<TableBooking> implements T
         );
         List<TableBooking> tbList = sessionFactory.getCurrentSession().createQuery(criteriaQuery2).list();
 
-        int occupiedTablesCount = 0;
-        for (TableBooking tbItem : tbList) {
-            occupiedTablesCount += (tbItem.getTables() != null ? tbItem.getTables().size() : 0);
-        }
+        int occupiedTablesCount = tbList != null ? new HashSet<TableBooking>(tbList).size() : 0;
 
         return allTablesCount - occupiedTablesCount;
     }
