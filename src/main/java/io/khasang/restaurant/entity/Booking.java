@@ -2,6 +2,7 @@ package io.khasang.restaurant.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "booking")
