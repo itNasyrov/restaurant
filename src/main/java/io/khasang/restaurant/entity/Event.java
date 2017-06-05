@@ -1,6 +1,8 @@
 package io.khasang.restaurant.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "event")
@@ -11,6 +13,9 @@ public class Event {
     private String name;
     private String description;
     private double price;
+
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Booking> bookings = new ArrayList<>();
 
     public long getId() {
         return id;
