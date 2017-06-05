@@ -1,6 +1,8 @@
 package io.khasang.restaurant.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -10,6 +12,9 @@ public class  Role {
     private long id;
 
     private String name;
+
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<User> users = new ArrayList<>();
 
     public String getName() {
         return name;
