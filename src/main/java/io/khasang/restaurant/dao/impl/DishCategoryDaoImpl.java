@@ -17,7 +17,7 @@ public class DishCategoryDaoImpl extends BasicDaoImpl<DishCategory> implements D
 
     @Override
     public DishCategory addDishCategory(DishCategory dishCategory) {
-        sessionFactory.getCurrentSession().save(dishCategory);
+        sessionFactory.getCurrentSession().persist(dishCategory);
         return dishCategory;
     }
 

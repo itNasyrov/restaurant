@@ -1,11 +1,16 @@
 package io.khasang.restaurant.controller;
 
+import io.khasang.restaurant.config.AppConfig;
+import io.khasang.restaurant.config.HibernateConfig;
 import io.khasang.restaurant.entity.Dish;
 import io.khasang.restaurant.entity.DishCategory;
 import io.khasang.restaurant.entity.Recipe;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,6 +20,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {AppConfig.class, HibernateConfig.class})
+@Transactional
 public class DishControllerIntegrationTest {
     private final String ROOT_DISH = "http://localhost:8080/dish";
     private final String ROOT_CATEGORY = "http://localhost:8080/dishcategory";
@@ -40,12 +48,13 @@ public class DishControllerIntegrationTest {
         );
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Dish result = responseEntity.getBody();
+        assertEquals(result.getRecipes().size(), 1);
+        assertNotNull(result.getIdCategory());
         assertNotNull(result);
         assertEquals(dish.getComment(), result.getComment());
     }
 
     @Test
-    @Transactional
     public void updateDocument(){
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
@@ -70,7 +79,6 @@ public class DishControllerIntegrationTest {
     }
 
     @Test
-    @Transactional
     public void deleteDish() {
         Dish dish = createTestObjects();
         RestTemplate restTemplate = new RestTemplate();
@@ -94,7 +102,6 @@ public class DishControllerIntegrationTest {
     }
 
     @Test
-    @Transactional
     public void getAllDishs(){
         RestTemplate restTemplate = new RestTemplate();
 
@@ -116,9 +123,9 @@ public class DishControllerIntegrationTest {
 
     private Dish createTestObjects() {
         DishCategory category = createDishCategory();
-        Dish dish = createDish(category);
-        Recipe recipe = createRecipe(dish);
-        return dish;
+        Dish dish = createDishWithoutSave(category);
+        Dish result = createDishWithRecipe(dish);
+        return result;
     }
 
     private DishCategory createDishCategory() {
@@ -143,20 +150,11 @@ public class DishControllerIntegrationTest {
         return dishCategory;
     }
 
-    private Dish createDish(DishCategory dishCategory) {
+    private Dish createDishWithoutSave(DishCategory dishCategory) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
         Dish dish = dishPrefill(dishCategory);
-        HttpEntity<Dish> httpEntity = new HttpEntity<>(dish, httpHeaders);
-        RestTemplate restTemplate = new RestTemplate();
-        Dish result = restTemplate.exchange(
-                ROOT_DISH + ADD,
-                HttpMethod.PUT,
-                httpEntity,
-                Dish.class).getBody();
-        assertNotNull(result);
-        assertEquals("Salad Olivier", result.getName());
-        return result;
+        return dish;
     }
 
     private Dish dishPrefill(DishCategory dishCategory) {
@@ -169,18 +167,19 @@ public class DishControllerIntegrationTest {
         return dish;
     }
 
-    private Recipe createRecipe(Dish dishForRecipe) {
+    private Dish createDishWithRecipe(Dish dishForRecipe) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
         Recipe recipe = recipePrefill(dishForRecipe);
-        HttpEntity<Recipe> httpEntity = new HttpEntity<>(recipe, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
-        Recipe result = restTemplate.exchange(
-                ROOT_RECIPE + ADD,
+
+        dishForRecipe.addRecipe(recipe);
+        HttpEntity<Dish> httpEntity = new HttpEntity<>(dishForRecipe, httpHeaders);
+        Dish result = restTemplate.exchange(
+                ROOT_DISH + ADD,
                 HttpMethod.PUT,
                 httpEntity,
-                Recipe.class).getBody();
-        assertNotNull(result);
+                Dish.class).getBody();
         return result;
     }
 

@@ -17,7 +17,7 @@ public class DishDaoImpl extends BasicDaoImpl<Dish> implements DishDao {
 
     @Override
     public Dish addDish(Dish dish) {
-        sessionFactory.getCurrentSession().save(dish);
+        sessionFactory.getCurrentSession().persist(dish);
         return dish;
     }
 

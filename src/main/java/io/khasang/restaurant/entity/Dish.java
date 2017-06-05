@@ -17,9 +17,10 @@ public class Dish {
 
     private int realizationTimeHours;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
-    @JoinColumn(name = "category_id")
+    @ManyToOne
+    @JoinColumn(name = "category_id",
+            foreignKey = @ForeignKey(name = "CATEGORY_ID_FK")
+    )
     private DishCategory category;
 
     @OneToMany(mappedBy = "dish", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -71,10 +72,6 @@ public class Dish {
 
     public List<Recipe> getRecipes() {
         return recipes;
-    }
-
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
     }
 
     public void addRecipe(Recipe recipe) {

@@ -17,7 +17,7 @@ public class RecipeDaoImpl extends BasicDaoImpl<Recipe> implements RecipeDao {
 
     @Override
     public Recipe addRecipe(Recipe recipe) {
-        sessionFactory.getCurrentSession().save(recipe);
+        sessionFactory.getCurrentSession().persist(recipe);
         return recipe;
     }
 
