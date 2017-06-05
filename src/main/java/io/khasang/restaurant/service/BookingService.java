@@ -47,22 +47,4 @@ public interface BookingService {
      * @return clients booking list
      */
     List<Booking> getBookingByName(String name);
-
-    /**
-     * Receive booking list for period
-     *
-     * @param dateBegin - begin of period
-     * @param dateEnd - end of period
-     * @return booking list
-     */
-    List<Booking> getForPeriod(Timestamp dateBegin, Timestamp dateEnd);
-
-    /**
-     * Availability booking check
-     *
-     * @param dateBegin - begin of book
-     * @param dateEnd - end of book
-     * @return true if booking is available
-     */
-    Boolean isBookingAvailable(Timestamp dateBegin, Timestamp dateEnd);
 }

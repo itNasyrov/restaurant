@@ -45,14 +45,4 @@ public class BookingServiceImpl implements BookingService {
     public List<Booking> getBookingByName(String name) {
         return bookingDao.getByName(name);
     }
-
-    @Override
-    public List<Booking> getForPeriod(Timestamp dateBegin, Timestamp dateEnd) {
-        return bookingDao.getForPeriod(dateBegin, dateEnd);
-    }
-
-    @Override
-    public Boolean isBookingAvailable(Timestamp dateBegin, Timestamp dateEnd) {
-        return bookingDao.isBookingAvailable(dateBegin, dateEnd);
-    }
 }

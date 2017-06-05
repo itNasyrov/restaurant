@@ -3,13 +3,9 @@ package io.khasang.restaurant.controller;
 import io.khasang.restaurant.entity.Booking;
 import io.khasang.restaurant.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -54,33 +50,5 @@ public class BookingController {
     @ResponseBody
     public List<Booking> getBookingByName(@PathVariable(value = "name") String name){
         return bookingService.getBookingByName(name);
-    }
-
-    @RequestMapping(value = "/filter", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
-    @ResponseBody
-    public List<Booking> getForPeriod(@RequestParam(value="dateBegin") String dtBegin,
-                                      @RequestParam(value="dateEnd") String dtEnd) {
-        Timestamp tsBegin = convertStringToTimestamp(dtBegin);
-        Timestamp tsEnd = convertStringToTimestamp(dtEnd);
-
-        return bookingService.getForPeriod(tsBegin, tsEnd);
-    }
-
-    @RequestMapping(value = "/check", method = RequestMethod.GET)
-    @ResponseBody
-    public Boolean isBookingAvailable(@RequestParam(value="dateBegin") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm") Timestamp dateBegin,
-                                      @RequestParam(value="dateEnd") @DateTimeFormat(pattern="yyyy-MM-dd HH:mm") Timestamp dateEnd) {
-        return bookingService.isBookingAvailable(dateBegin, dateEnd);
-    }
-
-    private Timestamp convertStringToTimestamp(String timestampStr){
-        SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss" );
-        Timestamp timestamp = null;
-        try {
-            timestamp = new Timestamp(df.parse(timestampStr).getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return timestamp;
     }
 }
