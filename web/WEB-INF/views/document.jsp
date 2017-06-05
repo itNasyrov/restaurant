@@ -19,7 +19,8 @@
                 $('#response').html(JSON.stringify(result));
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $('#response').html(JSON.stringify(jqXHR));
+                //$('#response').html(JSON.stringify(jqXHR));
+                $('#response').html(jqXHR.status + " and " + jqXHR.responseText);
             }
         });
     };
@@ -50,7 +51,7 @@
             'description': $('#putDescription').val()
         };
         $.ajax({
-            type: 'POST',
+            type: 'PUT',
             url: service + "/update",
             contentType: 'application/json;charset=utf-8',
             data: JSON.stringify(JSONObject),

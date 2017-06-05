@@ -1,8 +1,16 @@
 package io.khasang.restaurant.config;
 
 import io.khasang.restaurant.dao.DocumentDao;
+import io.khasang.restaurant.dao.TableBookingDao;
 import io.khasang.restaurant.dao.impl.DocumentDaoImpl;
+import io.khasang.restaurant.dao.impl.TableBookingDaoImpl;
 import io.khasang.restaurant.entity.Document;
+import io.khasang.restaurant.entity.TableBooking;
+import io.khasang.restaurant.dao.OrderDao;
+import io.khasang.restaurant.dao.impl.DocumentDaoImpl;
+import io.khasang.restaurant.dao.impl.OrderDaoImpl;
+import io.khasang.restaurant.entity.Document;
+import io.khasang.restaurant.entity.Order;
 import io.khasang.restaurant.model.Cat;
 import io.khasang.restaurant.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +31,7 @@ public class AppConfig {
     private Environment environment;
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         JdbcDaoImpl jdbcImpl = new JdbcDaoImpl();
         jdbcImpl.setDataSource(dataSource());
         jdbcImpl.setUsersByUsernameQuery(environment.getProperty("usersByQuery"));
@@ -42,8 +50,18 @@ public class AppConfig {
     }
 
     @Bean
-    public DocumentDao documentDao(){
+    public DocumentDao documentDao() {
         return new DocumentDaoImpl(Document.class);
+    }
+
+    @Bean
+    public TableBookingDao tableBookingDao() {
+        return new TableBookingDaoImpl(TableBooking.class);
+    }
+
+    @Bean
+    public OrderDao orderDao() {
+        return new OrderDaoImpl(Order.class);
     }
 
     @Bean
