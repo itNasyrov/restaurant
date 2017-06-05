@@ -25,13 +25,14 @@ public class UserController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<User> getDocumentList(){
+    public List<User> getUsertList(){
+    
         return userService.getUserList();
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public User updateDocument(@RequestBody User user){
+    public User updateUser(@RequestBody User user){
         userService.updateUser(user);
         return user;
     }
