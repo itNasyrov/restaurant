@@ -57,6 +57,7 @@ public class AppConfig {
     @Bean
     public TableBookingDao tableBookingDao() {
         return new TableBookingDaoImpl(TableBooking.class);
+    }
 
     @Bean
     public OrderDao orderDao() {
