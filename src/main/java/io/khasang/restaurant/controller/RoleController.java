@@ -38,5 +38,15 @@ public class RoleController {
         return roleService.getRoleList();
     }
 
+    @RequestMapping(value = "/get/id/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Role getRoleById(@PathVariable(value = "id") String id){
+        return roleService.getRoleById(Long.parseLong(id));
+    }
 
+    @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Role> getRoleListByName(@PathVariable(value = "name") String name){
+        return roleService.getRoleListByName(name);
+    }
 }

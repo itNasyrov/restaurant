@@ -25,6 +25,9 @@ public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao{
 
     @Override
     public List<User> findByName(String name) {
-        return null;
+        return (List<User>) sessionFactory.getCurrentSession()
+                .createQuery("from User as u where u.name = ?")
+                .setParameter(0, name)
+                .list();
     }
 }

@@ -33,5 +33,13 @@ public class RoleServiceImpl implements RoleService{
         return roleDao.update(role);
     }
 
+    @Override
+    public Role getRoleById(long id) {
+        return roleDao.getById(id);
+    }
 
+    @Override
+    public List<Role> getRoleListByName(String name) {
+        return roleDao.findByName(name);
+    }
 }
