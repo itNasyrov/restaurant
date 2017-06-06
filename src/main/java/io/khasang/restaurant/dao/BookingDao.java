@@ -6,7 +6,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public interface BookingDao extends BasicDao<Booking>{
-
     /**
      * Create booking at database
      * @param booking - booking
@@ -21,4 +20,22 @@ public interface BookingDao extends BasicDao<Booking>{
      * @return clients list
      */
     List<Booking> getByName(String name);
+
+    /**
+     * Receive bookings for the period
+     *
+     * @param dateBegin - begin date of period
+     * @param dateEnd - end date of period
+     * @return bookings list
+     */
+    List<Booking> getForPeriod(Timestamp dateBegin, Timestamp dateEnd);
+
+    /**
+     * Booking availability check
+     *
+     * @param dateBegin - begin date of period
+     * @param dateEnd - end date of period
+     * @return flag is true, if booking is available
+     */
+    Boolean isBookingAvailable(Timestamp dateBegin, Timestamp dateEnd);
 }
