@@ -17,6 +17,15 @@ public class Event {
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Booking> bookings = new ArrayList<>();
 
+    public List<Booking> getBookings(){
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings){
+        this.bookings = bookings;
+    }
+
+
     public long getId() {
         return id;
     }

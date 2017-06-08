@@ -1,5 +1,6 @@
 package io.khasang.restaurant.controller;
 
+import io.khasang.restaurant.entity.Booking;
 import io.khasang.restaurant.entity.Event;
 
 import org.junit.Test;
@@ -7,6 +8,9 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
@@ -125,6 +129,26 @@ public class EventControllerIntegrationTest {
         Event event = new Event();
         event.setName("Marriage");
         event.setDescription("Golden");
+
+        Booking booking = new Booking();
+        booking.setClient("Dinar");
+        booking.setPriceOfEventAndMenu(new Double(Double.valueOf(10)));
+
+        Booking booking2 = new Booking();
+        booking2.setClient("Sergei");
+        booking2.setPriceOfEventAndMenu(new Double(Double.valueOf(8)));
+
+        List<Booking> bookingList = new ArrayList<>();
+        bookingList.add(booking);
+        bookingList.add(booking2);
+
+        event.setBookings(bookingList);
         return event;
+
+
+
     }
+
+
+
 }
