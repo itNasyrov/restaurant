@@ -15,7 +15,13 @@ public class  Role {
 
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
     private List<User> users = new ArrayList<>();
-    
+
+    public List<User> getUsers() {
+        return users;
+    }
+    public void setUsers(List<User> users){
+        this.users = users;
+    }
 
     public String getName() {
         return name;

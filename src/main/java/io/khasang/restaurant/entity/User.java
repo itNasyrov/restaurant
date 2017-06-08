@@ -14,6 +14,8 @@ public class User {
     //@Column(name = "role_id")
     private long roleId;
 
+
+
     public long getId() {
         return id;
     }

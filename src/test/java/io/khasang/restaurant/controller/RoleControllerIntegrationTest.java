@@ -7,6 +7,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
@@ -123,6 +124,20 @@ public class RoleControllerIntegrationTest {
     private Role rolePrefill() {
         Role role = new Role();
         role.setName("Deliveryman");
+
+        User user = new User();
+        user.setName("Dinar");
+        user.setLogin(new String(String.valueOf(10)));
+
+        User user2 = new User();
+        user2.setName("Sergei");
+        user2.setLogin(new String(String.valueOf(7)));
+
+        List<User> userList = new ArrayList<>();
+
+        userList.add(user);
+        userList.add(user2);
+        role.setUsers(userList);
         return role;
     }
 
