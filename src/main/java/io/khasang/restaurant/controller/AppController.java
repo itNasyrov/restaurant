@@ -18,10 +18,10 @@ public class AppController {
     }
 
     @RequestMapping("/user")
-    public String getUsers(){ return "user"; }
+    public String getUser(){ return "user"; }
 
     @RequestMapping("/role")
-    public String getRoles() { return "role"; }
+    public String getRole() { return "role"; }
 
     @RequestMapping("/list")
     public String getList(Model model){
@@ -33,7 +33,7 @@ public class AppController {
     }
 
     @RequestMapping("/user/page")
-    public String getUser(){
+    public String getUsers(){
         return "page";
     }
 
