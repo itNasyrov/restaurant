@@ -21,9 +21,7 @@ public class AppController {
     public String getUsers(){ return "user"; }
 
     @RequestMapping("/role")
-    public String getRoles() {
-        return "role";
-    }
+    public String getRoles() { return "role"; }
 
     @RequestMapping("/list")
     public String getList(Model model){
