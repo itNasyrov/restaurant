@@ -24,12 +24,27 @@ public class Booking {
     private String phone;
     private int quantity;
 
+    @ManyToOne
+    @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "EVENT_ID_FK"))
+
+    private Event event;
+
+    public Booking(){}
+
+    public Booking(String client){ this.client = client;}
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Event getEvent(){ return event; }
+
+    public void setEvent(Event event){
+        this.event = event;
     }
 
     public Timestamp getDateBegin() {
@@ -52,8 +67,8 @@ public class Booking {
         return idEvent;
     }
 
-    public void setIdEvent(int idIvent) {
-        this.idEvent = idIvent;
+    public void setIdEvent(int idEvent) {
+        this.idEvent = idEvent;
     }
 
     public int getIdMenu() {
