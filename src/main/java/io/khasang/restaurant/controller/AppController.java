@@ -17,6 +17,9 @@ public class AppController {
         return "index";
     }
 
+    @RequestMapping("/user")
+    public String getUsers(){ return "user"; }
+
     @RequestMapping("/role")
     public String getRoles() {
         return "role";
