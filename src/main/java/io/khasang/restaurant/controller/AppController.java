@@ -17,6 +17,9 @@ public class AppController {
         return "index";
     }
 
+    @RequestMapping("/booking")
+    public String getBooking(){ return "booking"; }
+
     @RequestMapping("/event")
     public String getEvents() {
         return "event";

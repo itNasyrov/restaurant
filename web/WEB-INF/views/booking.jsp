@@ -85,16 +85,18 @@
                 <td><code><strong>PUT</strong>/booking/add</code></td>
                 <td>
                     <form class="form-inline">
-                        date: <input type="date" id="putDate" value="">
-                        idIvent: <input type="text", id="putIdIvent", value="">
-                        idMenu: <input type="text", id="putIdMenu", value="">
-                        available: <input type="text", id="putAvailable", value="">
-                        price: <input type="text", id="putPrice", value="">
-                        phone:<input type="text", id="putPhone", value="">
+                        dateBegin: <input type="date" id="putDateBegin" value=""/>
+                        dateEnd: <input type="date" id="putDateEnd" value=""/>
+                        idEvent: <input type="text" id="putIdIvent" value=""/>
+                        idMenu: <input type="text" id="putIdMenu" value=""/>
+                        available: <input type="text" id="putAvailable", value=""/>
+                        price: <input type="text" id="putPrice" value=""/>
+                        phone:<input type="text" id="putPhone" value=""/>
                         client: <input type="text" id="putClient" value=""/>
                         quantity: <input type="text" id="putQuantity" value=""/>
                         <button type="button" onclick="RestPut(
-                            $('#putDate').val(),
+                            $('#putDateBegin').val(),
+                            $('#putDateEnd').val(),
                             $('#putIdIvent').val(),
                             $('#putIdMenu').val(),
                             $('#putAvailable').val(),

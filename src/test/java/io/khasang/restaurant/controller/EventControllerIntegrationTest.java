@@ -130,7 +130,7 @@ public class EventControllerIntegrationTest {
         event.setName("Marriage");
         event.setDescription("Golden");
 
-        Booking booking = new Booking();
+       /* Booking booking = new Booking();
         booking.setClient("Dinar");
         booking.setPriceOfEventAndMenu(new Double(Double.valueOf(10)));
 
@@ -142,7 +142,7 @@ public class EventControllerIntegrationTest {
         bookingList.add(booking);
         bookingList.add(booking2);
 
-        event.setBookings(bookingList);
+        event.setBookings(bookingList);*/
         return event;
 
 
