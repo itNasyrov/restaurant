@@ -1,8 +1,7 @@
 package io.khasang.restaurant.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "event")
@@ -12,19 +11,7 @@ public class Event {
     private long id;
     private String name;
     private String description;
-    private double price;
-
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Booking> bookings = new ArrayList<>();
-
-    public List<Booking> getBookings(){
-        return bookings;
-    }
-
-    public void setBookings(List<Booking> bookings){
-        this.bookings = bookings;
-    }
-
+    private BigDecimal price;
 
     public long getId() {
         return id;
@@ -50,11 +37,11 @@ public class Event {
         this.description = description;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }

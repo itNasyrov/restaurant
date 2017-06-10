@@ -14,8 +14,6 @@ public class Booking {
     private Timestamp dateBegin;
     @Column(name = "date_end")
     private Timestamp dateEnd;
-    @Column(name = "id_event")
-    private int idEvent;
     @Column(name = "id_menu")
     private int idMenu;
     @Column(name = "total_price")
@@ -23,10 +21,8 @@ public class Booking {
     private String client;
     private String phone;
     private int quantity;
-
     @ManyToOne
     @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "EVENT_ID_FK"))
-
     private Event event;
 
     public Booking(){}
@@ -61,14 +57,6 @@ public class Booking {
 
     public void setDateEnd(Timestamp dateEnd) {
         this.dateEnd = dateEnd;
-    }
-
-    public int getIdEvent() {
-        return idEvent;
-    }
-
-    public void setIdEvent(int idEvent) {
-        this.idEvent = idEvent;
     }
 
     public int getIdMenu() {

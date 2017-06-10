@@ -1,6 +1,5 @@
 package io.khasang.restaurant.controller;
 
-import io.khasang.restaurant.entity.Booking;
 import io.khasang.restaurant.entity.Event;
 
 import org.junit.Test;
@@ -9,14 +8,11 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
 
 public class EventControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/event";
@@ -25,7 +21,6 @@ public class EventControllerIntegrationTest {
     private final String GET_ID = "/get/id/";
     private final String DELETE = "/delete/";
     private final String ALL = "/all";
-
 
     @Test
     public void addEvent() {
@@ -129,26 +124,7 @@ public class EventControllerIntegrationTest {
         Event event = new Event();
         event.setName("Marriage");
         event.setDescription("Golden");
-
-       /* Booking booking = new Booking();
-        booking.setClient("Dinar");
-        booking.setPriceOfEventAndMenu(new Double(Double.valueOf(10)));
-
-        Booking booking2 = new Booking();
-        booking2.setClient("Sergei");
-        booking2.setPriceOfEventAndMenu(new Double(Double.valueOf(8)));
-
-        List<Booking> bookingList = new ArrayList<>();
-        bookingList.add(booking);
-        bookingList.add(booking2);
-
-        event.setBookings(bookingList);*/
+        event.setPrice(new BigDecimal(1000.25));
         return event;
-
-
-
     }
-
-
-
 }

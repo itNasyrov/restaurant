@@ -37,7 +37,6 @@ public class BookingController {
     @ResponseBody
     public Booking getBookingById(@PathVariable(value = "id") String id){
         return bookingService.getBookingById(Long.parseLong(id));
-
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

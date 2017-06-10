@@ -1,13 +1,13 @@
 package io.khasang.restaurant.controller;
 
 import io.khasang.restaurant.entity.Booking;
+import io.khasang.restaurant.entity.Event;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
-
+import java.math.BigDecimal;
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -19,7 +19,7 @@ public class BookingControllerIntegrationTest {
     private final String GET_ID = "/get/id/";
     private final String DELETE = "/delete/";
     private final String ALL = "/all";
-
+    private final String EVENT_ADD = "http://localhost:8080/event/add";
 
     @Test
     public void addBooking() {
@@ -44,7 +44,7 @@ public class BookingControllerIntegrationTest {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
         RestTemplate restTemplate = new RestTemplate();
-        Booking booking =  createBooking();
+        Booking booking = createBooking();
 
         booking.setPhone("54321");
         HttpEntity<Booking> httpEntity = new HttpEntity<>(booking, httpHeaders);
@@ -106,7 +106,12 @@ public class BookingControllerIntegrationTest {
     private Booking createBooking() {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        Event event = createEvent();
+
         Booking booking = bookingPrefill();
+        booking.setEvent(event);
+
         HttpEntity<Booking> httpEntity = new HttpEntity<>(booking, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
         Booking result = restTemplate.exchange(
@@ -124,5 +129,28 @@ public class BookingControllerIntegrationTest {
         Booking booking = new Booking();
         booking.setPhone("12345");
         return booking;
+    }
+
+    private Event eventPrefill() {
+        Event event = new Event();
+        event.setName("Birthday");
+        event.setPrice(new BigDecimal(10000.20));
+        return event;
+    }
+
+    private Event createEvent() {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        RestTemplate restTemplate = new RestTemplate();
+
+        Event event = eventPrefill();
+        HttpEntity<Event> httpEvent = new HttpEntity<>(event, httpHeaders);
+
+        Event resultEvent = restTemplate.exchange(
+                EVENT_ADD,
+                HttpMethod.PUT,
+                httpEvent,
+                Event.class).getBody();
+        return resultEvent;
     }
 }

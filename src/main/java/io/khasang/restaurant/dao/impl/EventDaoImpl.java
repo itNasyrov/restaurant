@@ -4,7 +4,6 @@ import io.khasang.restaurant.dao.EventDao;
 import io.khasang.restaurant.entity.Event;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
 public class EventDaoImpl extends BasicDaoImpl<Event> implements EventDao {
