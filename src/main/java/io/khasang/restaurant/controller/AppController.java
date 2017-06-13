@@ -25,7 +25,7 @@ public class AppController {
 
     @RequestMapping("/")
     public String hello() {
-        return "document";
+        return "index";
     }
 
     @RequestMapping("/booking")
