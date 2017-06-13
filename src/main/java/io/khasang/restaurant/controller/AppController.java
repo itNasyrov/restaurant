@@ -2,7 +2,6 @@ package io.khasang.restaurant.controller;
 
 import io.khasang.restaurant.entity.Document;
 import io.khasang.restaurant.model.Message;
-import io.khasang.restaurant.model.Cat;
 import io.khasang.restaurant.service.SpellService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,8 +20,6 @@ import java.util.List;
 public class AppController {
     @Autowired
     private Message message;
-    @Autowired
-    private Cat cat;
     @Autowired
     private SpellService spellService;
 
