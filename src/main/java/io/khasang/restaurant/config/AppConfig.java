@@ -15,7 +15,6 @@ import io.khasang.restaurant.entity.TableBooking;
 import io.khasang.restaurant.dao.OrderDao;
 import io.khasang.restaurant.dao.impl.OrderDaoImpl;
 import io.khasang.restaurant.entity.Order;
-import io.khasang.restaurant.model.Cat;
 import io.khasang.restaurant.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -75,11 +74,6 @@ public class AppConfig {
     @Bean
     public BookingDao bookingDao(){
         return new BookingDaoImpl(Booking.class);
-    }
-  
-    @Bean
-    public Cat cat() {
-        return new Cat(jdbcTemplate());
     }
   
     @Bean
