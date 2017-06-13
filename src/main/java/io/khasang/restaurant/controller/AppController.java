@@ -36,12 +36,6 @@ public class AppController {
         return "event";
     }
   
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String createTable(Model model) {
-        model.addAttribute("create", cat.createCatTable());
-        return "create";
-    }
-
     @RequestMapping("/list")
     public String getList(Model model) {
         List<Message> messagesList = new ArrayList<>();
