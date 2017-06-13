@@ -1,6 +1,8 @@
 package io.khasang.restaurant.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "document")
@@ -10,6 +12,17 @@ public class Document {
     private long id;
     private String name;
     private String description;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<DocumentItem> documentItems = new ArrayList<>();
+
+    public List<DocumentItem> getDocumentItems() {
+        return documentItems;
+    }
+
+    public void setDocumentItems(List<DocumentItem> documentItems) {
+        this.documentItems = documentItems;
+    }
 
     public String getDescription() {
         return description;
