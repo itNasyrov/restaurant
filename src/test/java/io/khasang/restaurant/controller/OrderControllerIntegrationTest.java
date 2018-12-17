@@ -1,19 +1,19 @@
 package io.khasang.restaurant.controller;
 
-import io.khasang.restaurant.entity.OrderItem;
 import io.khasang.restaurant.entity.Order;
+import io.khasang.restaurant.entity.OrderItem;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
+@Ignore
 public class OrderControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/order";
     private final String ADD = "/add";

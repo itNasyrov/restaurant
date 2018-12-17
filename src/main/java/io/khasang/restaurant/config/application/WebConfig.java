@@ -1,9 +1,10 @@
 package io.khasang.restaurant.config.application;
 
+import io.khasang.restaurant.config.SwaggerConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
+@Import(SwaggerConfig.class)
 @ComponentScan({"io.khasang.restaurant.controller", "io.khasang.restaurant.config", "io.khasang.restaurant.model",
         "io.khasang.restaurant.service", "io.khasang.restaurant.dao"})
 public class WebConfig extends WebMvcConfigurerAdapter{
@@ -32,5 +34,10 @@ public class WebConfig extends WebMvcConfigurerAdapter{
         registry.addResourceHandler("/images/**").addResourceLocations("/WEB-INF/views/images/");
         registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/views/resources/");
         registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/views/fonts/");
+
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 }

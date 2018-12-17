@@ -3,6 +3,7 @@ package io.khasang.restaurant.model;
 import io.khasang.restaurant.config.HibernateConfig;
 import io.khasang.restaurant.config.application.WebConfig;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.transaction.Transactional;
 
+@Ignore
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
