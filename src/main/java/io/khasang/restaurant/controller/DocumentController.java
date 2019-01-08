@@ -1,73 +1,89 @@
 package io.khasang.restaurant.controller;
 
 import io.khasang.restaurant.entity.Document;
-import io.khasang.restaurant.exception.DocumentNotFoundException;
-import io.khasang.restaurant.model.ExceptionJSONInfo;
 import io.khasang.restaurant.service.DocumentService;
+import io.khasang.restaurant.util.ResponseRestFactory;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import restaurant.swagger.api.DocumentApi;
+import restaurant.swagger.model.ResponseRest;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/document")
-public class DocumentController {
+public class DocumentController implements DocumentApi {
     @Autowired
     private DocumentService documentService;
 
-    @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
-    @ResponseBody
-    public Document addDocument(@RequestBody Document document){
-        return documentService.addDocument(document);
+    public ResponseEntity<ResponseRest> addDocumentUsingPUT(@ApiParam(value = "document" ,required=true )
+                                                            @Valid @RequestBody restaurant.swagger.model.Document document) {
+        Document entity = documentService.addDocument(documentToEntity(document));
+        restaurant.swagger.model.Document body = entityToDocument(entity);
+        return ResponseEntity.ok(ResponseRestFactory.success(body));
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Document> getDocumentList(){
-        return documentService.getDocumentList();
+    public ResponseEntity<ResponseRest> deleteDocumentUsingDELETE(@ApiParam(value = "id",required=true )
+                                                                  @PathVariable("id") String id) {
+        Document entity = documentService.deleteDocument(Long.parseLong(id));
+        restaurant.swagger.model.Document body = entityToDocument(entity);
+        return ResponseEntity.ok(ResponseRestFactory.success(body));
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    @ResponseBody
-    public Document deleteDocument(@PathVariable(value = "id") String id){
-        return documentService.deleteDocument(Long.parseLong(id));
+    public ResponseEntity<ResponseRest> getDocumentByIdUsingGET(@ApiParam(value = "id",required=true )
+                                                                @PathVariable("id") String id) {
+        Document entity = documentService.getDocumentById(Long.parseLong(id));
+        if (entity == null)
+            return ResponseEntity.ok(ResponseRestFactory.notFound("DocumentNotFound with id = " + id));
+
+        restaurant.swagger.model.Document body = entityToDocument(entity);
+        return ResponseEntity.ok(ResponseRestFactory.success(body));
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
-    @ResponseBody
-    public Document updateDocument(@RequestBody Document document){
-        documentService.updateDocument(document);
+    public ResponseEntity<List<restaurant.swagger.model.Document>> getDocumentListByNameUsingGET(@ApiParam(value = "name",required=true )
+                                                                            @PathVariable("name") String name) {
+        List<Document> list = documentService.getDocumentListByName(name);
+        List<restaurant.swagger.model.Document> documents = new ArrayList<>();
+        list.forEach(d -> documents.add(entityToDocument(d)));
+        return ResponseEntity.ok(documents);
+    }
+
+    public ResponseEntity<List<restaurant.swagger.model.Document>> getDocumentListUsingGET() {
+        List<Document> list = documentService.getDocumentList();
+        List<restaurant.swagger.model.Document> documents = new ArrayList<>();
+        list.forEach(d -> documents.add(entityToDocument(d)));
+        return ResponseEntity.ok(documents);
+    }
+
+    public ResponseEntity<ResponseRest> updateDocumentUsingPUT(@ApiParam(value = "document" ,required=true )
+                                                               @Valid @RequestBody restaurant.swagger.model.Document document) {
+        Document entity = documentService.updateDocument(documentToEntity(document));
+        restaurant.swagger.model.Document body = entityToDocument(entity);
+        return ResponseEntity.ok(ResponseRestFactory.success(body));
+    }
+
+    private Document documentToEntity(restaurant.swagger.model.Document document) {
+        Document entity = new Document();
+
+        if (document.getId() != null)
+            entity.setId(document.getId());
+        entity.setName(document.getName());
+        entity.setDescription(document.getDescription());
+        entity.setDocumentItems(new ArrayList<>());
+        return entity;
+    }
+
+    private restaurant.swagger.model.Document entityToDocument(Document entity) {
+        restaurant.swagger.model.Document document = new restaurant.swagger.model.Document();
+        document.setId(entity.getId());
+        document.setName(entity.getName());
+        document.setDescription(entity.getDescription());
+        document.setDocumentItems(new ArrayList<>());
         return document;
     }
-
-    @RequestMapping(value = "/get/id/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
-    @ResponseBody
-    public Document getDocumentById(@PathVariable(value = "id") String id) throws DocumentNotFoundException {
-        Document document = documentService.getDocumentById(Long.parseLong(id));
-        if (document == null) {
-            throw new DocumentNotFoundException(id);
-        }
-        return document;
-    }
-
-    @ExceptionHandler(DocumentNotFoundException.class)
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public @ResponseBody
-    ExceptionJSONInfo handleDocumentNotFoundException(HttpServletRequest request, Exception ex) {
-        ExceptionJSONInfo response = new ExceptionJSONInfo();
-        response.setUrl(request.getRequestURL().toString());
-        response.setMessage(ex.getMessage());
-        //todo: LoggerFactory for logger.error
-        return response;
-    }
-
-    @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Document> getDocumentListByName(@PathVariable(value = "name") String name){
-        return documentService.getDocumentListByName(name);
-    }
-
 }

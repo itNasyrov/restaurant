@@ -1,23 +1,25 @@
 package io.khasang.restaurant.controller;
 
-import io.khasang.restaurant.entity.Document;
-import io.khasang.restaurant.entity.DocumentItem;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
+import restaurant.swagger.model.Document;
+import restaurant.swagger.model.DocumentItem;
+import restaurant.swagger.model.ResponseRest;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
 @Ignore
 public class DocumentControllerIntegrationTest {
-    private final String ROOT = "http://localhost:8080/document";
+    private final String ROOT = "http://localhost:8085/document";
     private final String ADD = "/add";
     private final String UPDATE = "/update";
     private final String GET_ID = "/get/id/";
@@ -29,16 +31,16 @@ public class DocumentControllerIntegrationTest {
     public void addDocument() {
         Document document = createDocument();
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Document> responseEntity = restTemplate.exchange(
+        ResponseEntity<ResponseRest> responseEntity = restTemplate.exchange(
                 ROOT + GET_ID + "{id}",
                 HttpMethod.GET,
                 null,
-                Document.class,
+                ResponseRest.class,
                 document.getId()
         );
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
 
-        Document resultDocument = responseEntity.getBody();
+        Document resultDocument = mapToDocument((Map<String, Object>) responseEntity.getBody().getBody());
         assertNotNull(resultDocument);
         assertEquals(document.getDescription(), resultDocument.getDescription());
     }
@@ -53,14 +55,17 @@ public class DocumentControllerIntegrationTest {
         document.setName("IceArrow");
         HttpEntity<Document> httpEntity = new HttpEntity<>(document, httpHeaders);
 
-        Document resultUpdatedDocument = restTemplate.exchange(
+        ResponseEntity<ResponseRest> resultUpdatedDocument = restTemplate.exchange(
                 ROOT + UPDATE,
                 HttpMethod.POST,
                 httpEntity,
-                Document.class).getBody();
-        assertNotNull(resultUpdatedDocument);
-        assertNotNull(resultUpdatedDocument.getId());
-        assertEquals(document.getName(), resultUpdatedDocument.getName());
+                ResponseRest.class);
+
+        Document document1 = mapToDocument((Map<String, Object>) resultUpdatedDocument.getBody().getBody());
+
+        assertNotNull(resultUpdatedDocument.getBody());
+        assertNotNull(document1.getId());
+        assertEquals(document.getName(), document1.getName());
     }
 
     @Test
@@ -68,25 +73,25 @@ public class DocumentControllerIntegrationTest {
         Document document = createDocument();
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> responseEntity = restTemplate.exchange(
+        ResponseEntity<ResponseRest> responseEntity = restTemplate.exchange(
                 ROOT + DELETE + "{id}",
                 HttpMethod.DELETE,
                 null,
-                String.class,
+                ResponseRest.class,
                 document.getId()
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
 
-        ResponseEntity<Document> checkDocumentExist = restTemplate.exchange(
+        ResponseEntity<ResponseRest> checkDocumentExist = restTemplate.exchange(
                 ROOT + GET_ID + "{id}",
                 HttpMethod.GET,
                 null,
-                Document.class,
+                ResponseRest.class,
                 document.getId()
         );
 
-        assertNull(checkDocumentExist.getBody());
+        assertNull(checkDocumentExist.getBody().getBody());
     }
 
     @Test
@@ -113,15 +118,26 @@ public class DocumentControllerIntegrationTest {
         Document document = documentPrefill();
         HttpEntity<Document> httpEntity = new HttpEntity<>(document, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
-        Document result = restTemplate.exchange(
+        ResponseRest result = restTemplate.exchange(
                 ROOT + ADD,
                 HttpMethod.PUT,
                 httpEntity,
-                Document.class).getBody();
+                ResponseRest.class).getBody();
         assertNotNull(result);
-        assertEquals("Fireball", result.getName());
-        assertNotNull(result.getId());
-        return result;
+
+        Document resultDocument = mapToDocument((Map<String, Object>) result.getBody());
+
+        assertEquals("Fireball", resultDocument.getName());
+        assertNotNull(resultDocument.getId());
+        return resultDocument;
+    }
+
+    private Document mapToDocument(Map<String, Object> map) {
+        Document document = new Document();
+        document.setId(Long.parseLong(map.get("id").toString()));
+        document.setName(map.get("name").toString());
+        document.setDescription(map.get("description").toString());
+        return document;
     }
 
     private Document documentPrefill() {

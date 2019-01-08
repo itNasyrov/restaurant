@@ -71,6 +71,16 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
+        <!--<dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.2.4.Final</version>
+        </dependency>-->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.0.0.GA</version>
+        </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -145,6 +155,39 @@
                     <warSourceDirectory>${basedir}/web</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>2.2.3</version>
+                <configuration>
+                    <inputSpec>${project.basedir}/src/main/resources/api.yml</inputSpec>
+                    <configOptions>
+                        <sourceFolder>/generate/java/api</sourceFolder>
+                    </configOptions>
+                    <output>${project.basedir}/src</output>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-swagger-spring</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <language>spring</language>
+                            <modelPackage>${project.groupId}.swagger.model</modelPackage>
+                            <apiPackage>${project.groupId}.swagger.api</apiPackage>
+                            <invokerPackage>${project.groupId}.swagger.invoker</invokerPackage>
+                            <configOptions>
+                                <generateSupportingFiles>false</generateSupportingFiles>
+                                <interfaceOnly>true</interfaceOnly>
+                                <dateLibrary>java8</dateLibrary>
+                                <java8>true</java8>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

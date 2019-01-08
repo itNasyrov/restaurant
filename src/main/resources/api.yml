@@ -1,0 +1,806 @@
+swagger: '2.0'
+info:
+  description: Api Documentation
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: 'urn:tos'
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0'
+host: 'localhost:8085'
+basePath: /
+tags:
+- name: app-controller
+  description: App Controller
+- name: document-controller
+  description: Document Controller
+- name: order-controller
+  description: Order Controller
+paths:
+  /booking/add:
+    put:
+      tags:
+      - table-booking-controller
+      summary: bookTable
+      operationId: bookTableUsingPUT
+      consumes:
+      - application/json
+      produces:
+      - application/json;charset=utf-8
+      parameters:
+      - in: body
+        name: tableBooking
+        description: tableBooking
+        required: true
+        schema:
+          $ref: '#/definitions/TableBooking'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/booking/all/date/{bookTime}':
+    get:
+      tags:
+      - table-booking-controller
+      summary: getAllTableBookings
+      operationId: getAllTableBookingsUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: bookTime
+        in: path
+        description: bookTime
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ResponseRest'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/booking/available/tables/date/{bookTime}':
+    get:
+      tags:
+      - table-booking-controller
+      summary: getAvailableTablesCount
+      operationId: getAvailableTablesCountUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: bookTime
+        in: path
+        description: bookTime
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: integer
+            format: int32
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/booking/delete/id/{id}':
+    delete:
+      tags:
+      - table-booking-controller
+      summary: deleteBooking
+      operationId: deleteBookingUsingDELETE
+      produces:
+      - '*/*'
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  '/booking/get/id/{id}':
+    get:
+      tags:
+      - table-booking-controller
+      summary: getBookingById
+      operationId: getBookingByIdUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /booking/update:
+    post:
+      tags:
+      - table-booking-controller
+      summary: updateBooking
+      operationId: updateBookingUsingPOST
+      consumes:
+      - application/json
+      produces:
+      - application/json;charset=utf-8
+      parameters:
+      - in: body
+        name: tableBooking
+        description: tableBooking
+        required: true
+        schema:
+          $ref: '#/definitions/TableBooking'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /create:
+    get:
+      tags:
+      - app-controller
+      summary: createTable
+      operationId: createTableUsingGET
+      produces:
+      - '*/*'
+      responses:
+        200:
+          description: OK
+          schema:
+            type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /document/add:
+    put:
+      tags:
+      - document-controller
+      summary: |
+        addDocument
+      operationId: addDocumentUsingPUT
+      consumes:
+      - application/json
+      produces:
+      - application/json;charset=utf-8
+      parameters:
+      - in: body
+        name: document
+        description: document
+        required: true
+        schema:
+          $ref: '#/definitions/Document'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        400:
+          description: Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        480:
+          description: ValidationError
+          schema:
+            $ref: '#/definitions/ValidationResponse'
+  /document/all:
+    get:
+      tags:
+      - document-controller
+      summary: getDocumentList
+      operationId: getDocumentListUsingGET
+      produces:
+      - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Document'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/document/delete/{id}':
+    delete:
+      tags:
+      - document-controller
+      summary: deleteDocument
+      operationId: deleteDocumentUsingDELETE
+      produces:
+      - '*/*'
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  '/document/get/id/{id}':
+    get:
+      tags:
+      - document-controller
+      summary: getDocumentById
+      operationId: getDocumentByIdUsingGET
+      produces:
+      - application/json;charset=utf-8
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/document/get/name/{name}':
+    get:
+      tags:
+      - document-controller
+      summary: getDocumentListByName
+      operationId: getDocumentListByNameUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: name
+        in: path
+        description: name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Document'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /document/update:
+    post:
+      tags:
+      - document-controller
+      summary: updateDocument
+      operationId: updateDocumentUsingPUT
+      consumes:
+      - application/json
+      produces:
+      - application/json;charset=utf-8
+      parameters:
+      - in: body
+        name: document
+        description: document
+        required: true
+        schema:
+          $ref: '#/definitions/Document'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /order/add:
+    post:
+      tags:
+      - order-controller
+      summary: addOrder
+      operationId: addOrderUsingPOST
+      consumes:
+      - application/json
+      produces:
+      - application/json;charset=utf-8
+      parameters:
+      - in: body
+        name: order
+        description: order
+        required: true
+        schema:
+          $ref: '#/definitions/Order'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/order/additem/{id}':
+    post:
+      tags:
+      - order-controller
+      summary: addItem
+      operationId: addItemUsingPOST
+      consumes:
+      - application/json
+      produces:
+      - application/json;charset=utf-8
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: string
+      - in: body
+        name: item
+        description: item
+        required: true
+        schema:
+          $ref: '#/definitions/OrderItem'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /order/all:
+    get:
+      tags:
+      - order-controller
+      summary: getOrderList
+      operationId: getOrderListUsingGET
+      produces:
+      - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ResponseRest'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/order/changestatus/{id}/{status}':
+    post:
+      tags:
+      - order-controller
+      summary: changeStatus
+      operationId: changeStatusUsingPOST
+      consumes:
+      - application/json
+      produces:
+      - application/json;charset=utf-8
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: string
+      - name: status
+        in: path
+        description: status
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/order/delete/{id}':
+    delete:
+      tags:
+      - order-controller
+      summary: deleteOrder
+      operationId: deleteOrderUsingDELETE
+      produces:
+      - '*/*'
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  '/order/get/{id}':
+    get:
+      tags:
+      - order-controller
+      summary: getOrderById
+      operationId: getOrderByIdUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/order/lastorder/{table}':
+    get:
+      tags:
+      - order-controller
+      summary: LastOrder
+      operationId: LastOrderUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: table
+        in: path
+        description: table
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/order/status/{status}':
+    get:
+      tags:
+      - order-controller
+      summary: StatusList
+      operationId: StatusListUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: status
+        in: path
+        description: status
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ResponseRest'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/order/table/{id}':
+    get:
+      tags:
+      - order-controller
+      summary: getListOrderByTable
+      operationId: getListOrderByTableUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ResponseRest'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /order/update:
+    post:
+      tags:
+      - order-controller
+      summary: updateOrder
+      operationId: updateOrderUsingPOST
+      consumes:
+      - application/json
+      produces:
+      - application/json;charset=utf-8
+      parameters:
+      - in: body
+        name: order
+        description: order
+        required: true
+        schema:
+          $ref: '#/definitions/Order'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseRest'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  Customer:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+    title: Customer
+  Document:
+    type: object
+    properties:
+      description:
+        type: string
+      documentItems:
+        type: array
+        items:
+          $ref: '#/definitions/DocumentItem'
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+    title: Document
+  DocumentItem:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      price:
+        type: number
+    title: DocumentItem
+  ErrorResponse:
+    type: object
+    required:
+    - errors
+    properties:
+      errors:
+        type: array
+        items:
+          type: string
+      codes:
+        type: array
+        items:
+          type: string
+  Order:
+    type: object
+    properties:
+      comment:
+        type: string
+      customer:
+        type: string
+      date:
+        type: string
+        format: date-time
+      date_ready:
+        type: string
+        format: date-time
+      id:
+        type: integer
+        format: int64
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/OrderItem'
+      status:
+        type: string
+      tableNumber:
+        type: integer
+        format: int32
+    title: Order
+  OrderItem:
+    type: object
+    properties:
+      amount:
+        type: integer
+        format: int32
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+    title: OrderItem
+  ResponseRest:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      body:
+        type: object
+    title: ResponceRest
+  RestaurantTable:
+    type: object
+    properties:
+      capacity:
+        type: integer
+        format: int32
+      id:
+        type: integer
+        format: int64
+    title: RestaurantTable
+  TableBooking:
+    type: object
+    properties:
+      bookTime:
+        type: string
+        format: date-time
+      customer:
+        $ref: '#/definitions/Customer'
+      id:
+        type: integer
+        format: int64
+      status:
+        type: string
+        enum:
+        - TABLE_BOOKED
+        - TABLE_OPENED
+        - TABLE_CLOSED
+        - TABLE_CANCELLED
+      tables:
+        type: array
+        items:
+          $ref: '#/definitions/RestaurantTable'
+    title: TableBooking
+  ValidationResponse:
+    type: object
+    required:
+    - errors
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: string
+      warnings:
+        type: array
+        items:
+          $ref: string
